@@ -1,11 +1,11 @@
-class DashboardPage {
+export class DashboardPage {
     verifyDashboard() {
-      cy.url().should('include', '/ghost/#/dashboard');
-      cy.get('.gh-nav').should('be.visible');
+        cy.url().should("include", "/ghost/#/dashboard");
+        cy.get(".gh-nav").should("be.visible");
     }
-  
+
     navigateToMembers() {
-      cy.get('a[href="#/members/"]').first().click();
+        cy.get('a[href="#/members/"]').first().click();
     }
 
     navigateToPagesList() {
@@ -14,3 +14,6 @@ class DashboardPage {
   }
   
   export default new DashboardPage();
+
+
+
