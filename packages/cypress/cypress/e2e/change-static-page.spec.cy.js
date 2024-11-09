@@ -52,10 +52,10 @@ describe('Ghost Admin - Static Page Management', () => {
     StaticPage.editPageContent(newPageContent); 
 
     cy.log('Then: I should be able to publish the changes');
-    StaticPage.publishPage(); 
+    StaticPage.savePage(); 
 
     cy.log('And: I should see a success message confirming the page is published');
-    StaticPage.verifyPagePublished(); 
+    StaticPage.verifySuccessMessage(); 
 
 
     });

@@ -55,7 +55,15 @@ class StaticPage {
       .type(content);
   }
 
+  savePage() {
+    cy.contains('button', 'Update').click(); // Click the "Update" button to save
+  }
 
+  verifySuccessMessage() {
+    cy.contains('.gh-notification-content', 'Page updated')
+      .should('be.visible')
+      .and('contain', 'Page updated');
+  }
 
   }
   
