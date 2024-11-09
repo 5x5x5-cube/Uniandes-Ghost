@@ -3,7 +3,7 @@ import StaticPage from './pages/static-page.page';
 
 describe('Ghost Admin - Static Page Management', () => {
     
-     it('should create, and publish a new static page successfully', () => {
+     it('E00701 - should create, and publish a new static page successfully', () => {
 
      const pageTitle = 'About Us';
      const pageContent = 'This is the About Us page content for our site.';
@@ -28,7 +28,7 @@ describe('Ghost Admin - Static Page Management', () => {
      
     });
 
-    it('should update, and publish a new static page successfully', () => {
+    it('E00702 - should update, and publish a new static page successfully', () => {
 
     cy.log('Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"');
     cy.loginPage.loginAs(Cypress.env("ADMIN_USERNAME"),Cypress.env("ADMIN_PASSWORD"));
