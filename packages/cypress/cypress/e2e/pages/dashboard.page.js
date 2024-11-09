@@ -7,6 +7,10 @@ class DashboardPage {
     navigateToMembers() {
       cy.get('a[href="#/members/"]').first().click();
     }
+
+    navigateToPagesList() {
+      cy.get('a[href="#/pages/"]').click();
+    }
   }
   
   export default new DashboardPage();
