@@ -38,11 +38,26 @@ Then('the member creation URL should be correct', async function () {
 
 When('I enter a dynamically generated email as the member email', async function () {
   // Generate a dynamic email
-  const memberEmail = `newmember${Date.now()}@example.com`;
+  //const memberEmail = `newmember${Date.now()}@example.com`;
+
+  const testPrefix = "andes";
+  const randomString = Math.random().toString(36).substring(2, 10);
+  const memberEmail = `${testPrefix}_${randomString}@uniandes.edu.co`;
 
   // Pass the generated email to your page object method
   await this.membersPage.enterMemberEmail(memberEmail);
 
   // Optionally, you can log the generated email for debugging
   console.log(`Generated member email: ${memberEmail}`);
+});
+
+Then('I should see an error indicating the email is required', async function () {
+  const emailInput = await this.driver.$('input[name="email"]');
+  const parentElement = await emailInput.parentElement();
+  const classAttribute = await parentElement.getAttribute('class');
+
+  if (!classAttribute.includes('error')) {
+    throw new Error('Email input does not show the error class');
+  }
+
 });

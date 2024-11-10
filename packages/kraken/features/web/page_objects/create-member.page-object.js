@@ -20,6 +20,7 @@ class MembersPage {
 
   async enterMemberEmail(email) {
     const emailInput = await this.driver.$('input[name="email"]');
+    await emailInput.waitForDisplayed();
     await emailInput.setValue(email);
   }
 
