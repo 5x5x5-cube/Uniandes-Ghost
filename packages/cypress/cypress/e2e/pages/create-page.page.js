@@ -37,7 +37,6 @@ export class CreatePage {
         const data = cy.get(
             'div[data-secondary-instance="false"] p[data-koenig-dnd-droppable="true"]'
         );
-        console.log("setContent", data);
         data.click().type(content);
     }
 
@@ -82,23 +81,25 @@ export class CreatePage {
         return cy.get("h1.gh-article-title");
     }
 
-    
-
     verifyPageInHomePage(title) {
-        return cy.get('.nav').then((elements) => {
+        return cy.get(".nav").then((elements) => {
             let value = false;
-    
+
             // Iteramos sobre cada elemento encontrado
-            cy.wrap(elements).each((element) => {
-                cy.wrap(element).invoke('text').then((text) => {
-                    if (text.includes(title)) {
-                        value = true;
-                    }
+            cy.wrap(elements)
+                .each((element) => {
+                    cy.wrap(element)
+                        .invoke("text")
+                        .then((text) => {
+                            if (text.includes(title)) {
+                                value = true;
+                            }
+                        });
+                })
+                .then(() => {
+                    // Retornamos el valor después de la iteración
+                    return value;
                 });
-            }).then(() => {
-                // Retornamos el valor después de la iteración
-                return value;
-            });
         });
     }
 }
