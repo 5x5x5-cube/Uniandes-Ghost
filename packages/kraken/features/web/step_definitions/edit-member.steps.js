@@ -2,31 +2,36 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('chai');
 const MembersPage = require('../page_objects/member.page-object');
 
-
+// When: Click on the Edit button for the first member
 When('I click on the Edit button for the first member', async function () {
-    const firstMemberEmail = await this.driver.$('.gh-members-list-email');
-    await firstMemberEmail.click();
+    // Open the first member for editing
+    this.membersPage = new MembersPage(this.driver);
+    await this.membersPage.openFirstMemberForEditing();
 });
-  
+
+// When: Update the member name
 When('I update the member name to {string}', async function (newName) {
-    await this.driver.$('#member-name').setValue(newName); // Replace with actual selector for member name input
+    // Update the member name using the page object method
+    await MembersPage.updateMemberName(newName);
 });
 
+// When: Update the member email
 When('I update the member email to {string}', async function (newEmail) {
-    await this.driver.$('#member-email').setValue(newEmail); // Replace with actual selector for member email input
+    // Update the member email using the page object method
+    await MembersPage.updateMemberEmail(newEmail);
 });
 
+// When: Save the updated member
 When('I save the updated member', async function () {
-    await this.driver.$('.gh-btn-primary').click(); // Adjust selector if needed for the Save button
+    // Save the updated member using the page object method
+    await this.membersPage.saveMember();
+ 
 });
 
+// Then: Verify success notification for member update
 Then('I should see a success notification indicating the member was updated', async function () {
-    const saveButton = await this.driver.$('button.gh-btn-primary');
-    await saveButton.waitForDisplayed();
-    const isGreen = await saveButton.getAttribute('class').then(classes => classes.includes('gh-btn-green'));
-    const buttonText = await saveButton.getText();
+    // Verify that the success notification appears after saving
+    await this.membersPage.verifyEditSuccess();
+  
 
-    if (!isGreen || !buttonText.includes('Saved')) {
-        throw new Error('Save confirmation not displayed correctly');
-    }
 });

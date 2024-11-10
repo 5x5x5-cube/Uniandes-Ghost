@@ -33,6 +33,32 @@ class MembersPage {
     const notification = await this.driver.$('.gh-notification-content');
     return await notification.isDisplayed();
   }
+
+  async updateMemberName(newName) {
+    const memberNameField = await this.driver.$('#member-name');
+    await memberNameField.setValue(newName);
+}
+
+  async updateMemberEmail(newEmail) {
+    const memberEmailField = await this.driver.$('#member-email');
+    await memberEmailField.setValue(newEmail);
+}
+
+async verifyEditSuccess() {
+  const saveButton = await this.driver.$('button.gh-btn-primary');
+  await saveButton.waitForDisplayed();
+  const isGreen = await saveButton.getAttribute('class').then(classes => classes.includes('gh-btn-green'));
+  const buttonText = await saveButton.getText();
+
+  if (!isGreen || !buttonText.includes('Saved')) {
+      throw new Error('Save confirmation not displayed correctly');
+  }
+}
+
+async openFirstMemberForEditing() {
+  const firstMemberEmail = await this.driver.$('.gh-members-list-email');
+  await firstMemberEmail.click();
+}
  
 }
 
