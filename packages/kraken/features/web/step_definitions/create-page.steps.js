@@ -16,9 +16,12 @@ When(`I click the "Settings" button`, async function () {
     return await this.pageEditorPageObject.clickSettings();
 });
 
-When(`I click the {string} editor button`, async function (buttonName) {
-    return await this.pageEditorPageObject.clickEditorButton(buttonName);
-});
+When(
+    `I click the {string} editor button in the Page editor`,
+    async function (buttonName) {
+        return await this.pageEditorPageObject.clickEditorButton(buttonName);
+    }
+);
 
 When(`I click the "Continue" button`, async function () {
     return await this.pageEditorPageObject.clickContinue();

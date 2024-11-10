@@ -34,7 +34,6 @@ export class PostEditorPage {
         const data = cy.get(
             'div[data-secondary-instance="false"] p[data-koenig-dnd-droppable="true"]'
         );
-        console.log("setContent", data);
         data.click().type(content);
     }
 

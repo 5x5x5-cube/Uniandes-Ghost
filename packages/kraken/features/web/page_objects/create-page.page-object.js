@@ -114,11 +114,11 @@ class PageEditorPageObject {
 
     async verifyPageInHome(title) {
         const elements = await this.driver.$$(`.nav`);
-        const value=false;
+        const value = false;
         for (let element of elements) {
             const text = await element.getText();
             if (text.includes(title)) {
-                value=true;
+                value = true;
                 break;
             }
         }

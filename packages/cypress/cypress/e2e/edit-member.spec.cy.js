@@ -1,6 +1,6 @@
 // cypress/integration/loginAndCreateMember.spec.js
 
-describe("Ghost Admin Login and Member Creation", () => {
+describe("F009 - Ghost Admin Login and Member Creation", () => {
     it("E00901 - should log in to Ghost admin and create a new member, then edit member successfully", () => {
         // When the user enters valid login credentials and submits
         cy.log(
