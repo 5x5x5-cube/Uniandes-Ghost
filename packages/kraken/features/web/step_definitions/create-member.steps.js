@@ -1,6 +1,6 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const { expect } = require("chai");
-const MembersPage = require('../page_objects/create-member.page-object');
+const MembersPage = require('../page_objects/member.page-object');
 
 When('I navigate to the Members page', async function () {
   this.membersPage = new MembersPage(this.driver);
