@@ -59,6 +59,15 @@ async openFirstMemberForEditing() {
   const firstMemberEmail = await this.driver.$('.gh-members-list-email');
   await firstMemberEmail.click();
 }
+
+async validateEmailErrorMessage() {
+  const currentUrl = await this.driver.getUrl();
+     const expectedUrl = await this.driver.getUrl(); // You can define the expected URL here if needed
+ 
+     if (currentUrl !== expectedUrl) {
+         throw new Error(`URL mismatch: Expected URL to be "${expectedUrl}", but got "${currentUrl}"`);
+     }
+}
  
 }
 

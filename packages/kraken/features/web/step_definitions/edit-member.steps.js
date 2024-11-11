@@ -35,13 +35,7 @@ Then('I should see a success notification indicating the member was updated', as
 });
 
 Then('I should see an error indicating the email is invalid', async function () {
-     // Step 2: Verify that the URL is still the same
-     const currentUrl = await this.driver.getUrl();
-     const expectedUrl = await this.driver.getUrl(); // You can define the expected URL here if needed
- 
-     if (currentUrl !== expectedUrl) {
-         throw new Error(`URL mismatch: Expected URL to be "${expectedUrl}", but got "${currentUrl}"`);
-     }
+    await this.membersPage.validateEmailErrorMessage(); 
 });
 
 
