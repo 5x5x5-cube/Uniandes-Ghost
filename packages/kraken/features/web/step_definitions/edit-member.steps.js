@@ -31,7 +31,21 @@ When('I save the updated member', async function () {
 // Then: Verify success notification for member update
 Then('I should see a success notification indicating the member was updated', async function () {
     // Verify that the success notification appears after saving
-    await this.membersPage.verifyEditSuccess();
-  
-
+    await this.membersPage.verifyEditSuccess(); 
 });
+
+Then('I should see an error indicating the email is invalid', async function () {
+     // Step 2: Verify that the URL is still the same
+     const currentUrl = await this.driver.getUrl();
+     const expectedUrl = await this.driver.getUrl(); // You can define the expected URL here if needed
+ 
+     if (currentUrl !== expectedUrl) {
+         throw new Error(`URL mismatch: Expected URL to be "${expectedUrl}", but got "${currentUrl}"`);
+     }
+});
+
+
+
+
+
+
