@@ -1,0 +1,15 @@
+{
+  "name": "regresion_resemble",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "playwright": "^1.48.2",
+    "resemblejs": "^5.0.0"
+  }
+}

@@ -12,17 +12,17 @@ class LoginPageObject {
     }
 
     async setEmail(email) {
-        const element = await this.driver.$("#identification");
+        const element = await this.driver.$('input[name="identification"]');
         return await element.setValue(email);
     }
 
     async setPassword(password) {
-        const element = await this.driver.$("#password");
+        const element = await this.driver.$('input[name="password"]');
         return await element.setValue(password);
     }
 
     async clickSignIn() {
-        const element = await this.driver.$("#ember5");
+        const element = await this.driver.$('button[type="submit"]');
         return await element.click();
     }
 
