@@ -29,14 +29,20 @@ module.exports = defineConfig({
 
                 const newPath = path.join(dirPath, fileName);
 
+                if (details.path === newPath) return;
+
                 return new Promise((resolve, reject) => {
                     fs.rename(details.path, newPath, (err) => {
                         if (err) return reject(err);
 
-                        fs.rmSync(
-                            details.path.split("/").slice(0, -1).join("/"),
-                            { recursive: true, force: true }
-                        );
+                        let currentPath = details.path
+                            .split("/")
+                            .slice(0, -1)
+                            .join("/");
+                        while (currentPath !== basePath) {
+                            fs.rmdirSync(currentPath, { recursive: true });
+                            currentPath = path.dirname(currentPath);
+                        }
 
                         resolve({ path: newPath });
                     });
