@@ -1,4 +1,6 @@
-export class SitePage {
+import { PageObjectClass } from "./page-object.class";
+
+export class SitePage extends PageObjectClass {
     navigateToSitePage() {
         cy.visit("/");
     }

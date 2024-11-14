@@ -1,5 +1,8 @@
-export class AdminPage {
+import { PageObjectClass } from "./page-object.class";
+
+export class AdminPage extends PageObjectClass {
     constructor() {
+        super();
         this.adminPage = "/ghost";
     }
 

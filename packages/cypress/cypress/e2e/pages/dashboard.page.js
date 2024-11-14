@@ -1,4 +1,6 @@
-export class DashboardPage {
+import { PageObjectClass } from "./page-object.class";
+
+export class DashboardPage extends PageObjectClass {
     verifyDashboard() {
         cy.url().should("include", "/ghost/#/dashboard");
         cy.get(".gh-nav").should("be.visible");
@@ -9,11 +11,9 @@ export class DashboardPage {
     }
 
     navigateToPagesList() {
-      cy.get('a[href="#/pages/"]').click();
+        cy.get('a[href="#/pages/"]').click();
+        cy.wait(1000);
     }
-  }
-  
-  export default new DashboardPage();
+}
 
-
-
+export default new DashboardPage();

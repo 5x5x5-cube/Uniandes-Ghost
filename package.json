@@ -22,5 +22,8 @@
   },
   "dependencies": {
     "resemblejs": "^5.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5"
   }
 }

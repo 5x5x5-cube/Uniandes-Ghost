@@ -1,4 +1,6 @@
-export class PostViewerPage {
+import { PageObjectClass } from "./page-object.class";
+
+export class PostViewerPage extends PageObjectClass {
     navigateToPost(url) {
         cy.visit(`/${url?.toLowerCase()}`);
         cy.wait(1000);

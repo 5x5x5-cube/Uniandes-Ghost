@@ -38,19 +38,26 @@ import "./commands";
 
 before(() => {
     cy.log("Global setup: Setting pages instances");
+    Cypress.Screenshot.defaults({
+        overwrite: true,
+    });
     cy.loginPage = new LoginPage();
-    cy.changeLanguage= new ChangeLanguage();
-    cy.profileStaff= new ProfileStaff();
+    cy.changeLanguage = new ChangeLanguage();
+    cy.profileStaff = new ProfileStaff();
     cy.changeLanguage = new ChangeLanguage();
     cy.postViewerPage = new PostViewerPage();
     cy.postEditorPage = new PostEditorPage();
     cy.dashboardPage = new DashboardPage();
     cy.membersPage = new MembersPage();
-    cy.createPage= new CreatePage();
+    cy.createPage = new CreatePage();
     cy.postListPage = new PostListPage();
     cy.settingsPage = new SettingsPage();
     cy.sitePage = new SitePage();
     cy.tagEditorPage = new TagEditorPage();
     cy.tagListPage = new TagListPage();
     cy.adminPage = new AdminPage();
+});
+
+beforeEach(() => {
+    cy.stepCounter = 1;
 });
