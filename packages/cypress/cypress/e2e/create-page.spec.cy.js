@@ -9,7 +9,6 @@ describe("F006 - Crear página estática", () => {
         cy.log(
             'Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"'
         );
-        cy.loginPage.visit();
         cy.loginPage.loginAs(
             Cypress.env("ADMIN_USERNAME"),
             Cypress.env("ADMIN_PASSWORD")
@@ -34,7 +33,6 @@ describe("F006 - Crear página estática", () => {
         cy.log("And I wait for 2 seconds");
         cy.wait(2000);
     });
-
 
     it("E00602 - Crear pagina estatica y no se visualiza en HomePage", () => {
         const pageTitle = faker.word.words(2);
@@ -63,7 +61,9 @@ describe("F006 - Crear página estática", () => {
         cy.createPage.navigateToHomePage(pageUrl);
 
         // Then
-        cy.log(`Then I shouldn't see a page in home page with title "${pageTitle}"`);
+        cy.log(
+            `Then I shouldn't see a page in home page with title "${pageTitle}"`
+        );
         cy.createPage.verifyPageInHomePage(pageTitle).then((result) => {
             expect(false).to.equal(result);
         });

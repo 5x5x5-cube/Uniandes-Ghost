@@ -1,6 +1,7 @@
+import { PageObjectClass } from "./page-object.class";
 import { faker } from "@faker-js/faker";
 
-export class CreatePage {
+export class CreatePage extends PageObjectClass {
     pageEditorPage = "/ghost/#/editor/page";
 
     navigateToHomePage() {

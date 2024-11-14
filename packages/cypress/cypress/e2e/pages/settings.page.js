@@ -1,4 +1,6 @@
-export class SettingsPage {
+import { PageObjectClass } from "./page-object.class";
+
+export class SettingsPage extends PageObjectClass {
     navigateToSettingsPage() {
         cy.visit("/ghost/#/settings");
     }

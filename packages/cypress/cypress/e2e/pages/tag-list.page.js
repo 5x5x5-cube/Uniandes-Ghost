@@ -1,4 +1,6 @@
-export class TagListPage {
+import { PageObjectClass } from "./page-object.class";
+
+export class TagListPage extends PageObjectClass {
     navigateToTagListPage() {
         cy.visit("/ghost/#/tags");
         cy.wait(1000);

@@ -1,6 +1,7 @@
+import { PageObjectClass } from "./page-object.class";
 import { faker } from "@faker-js/faker";
 
-export class PostEditorPage {
+export class PostEditorPage extends PageObjectClass {
     postEditorPage = "/ghost/#/editor/post";
 
     visit() {
