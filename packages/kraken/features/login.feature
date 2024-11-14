@@ -3,7 +3,7 @@ Esta funcionalidad permite ingresar las credenciales de
 administrador para acceder a las funcionalidades del CSM
 
 @user1 @web
-Scenario: E01201 - Inicio de sesión exitoso
+Scenario: E01201 - Inicio de sesion exitoso
   Given I am on the login page
   When I enter email "<ADMIN_USERNAME>"
   And I wait for 1 seconds
@@ -14,7 +14,7 @@ Scenario: E01201 - Inicio de sesión exitoso
   Then I should be on the "dashboard" section
 
 @user2 @web
-Scenario: E01201 - Inicio de sesión con contraseña incorrecta
+Scenario: E01201 - Inicio de sesinn con contrasena incorrecta
   Given I am on the login page
   When I enter email "<ADMIN_USERNAME>"
   And I wait for 1 seconds

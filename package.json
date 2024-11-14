@@ -5,17 +5,22 @@
   "main": "index.js",
   "scripts": {
     "test:kraken": "npm run test --workspace=packages/kraken",
-    "test:cypress": "npm run test --workspace=packages/cypress"
+    "test:cypress": "npm run test --workspace=packages/cypress",
+    "test:resemble": "npm run test --workspace=packages/regresion_resemble"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "workspaces": [
     "packages/cypress",
-    "packages/kraken"
+    "packages/kraken",
+    "packages/regresion_resemble"
   ],
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=20.13.1"
+  },
+  "dependencies": {
+    "resemblejs": "^5.0.0"
   }
 }
