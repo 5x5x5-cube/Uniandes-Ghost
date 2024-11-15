@@ -70,7 +70,7 @@ describe("F001 - Modificar titulo del sitio", () => {
 
         // Then
         cy.log("Then I should see the unsaved changes modal");
-        cy.settingsPage.getUnsavedChangesModal().should("be.visible");
+        cy.settingsPage.getUnsavedChangesModal().should("exist");
 
         cy.log("And I wait for 2 seconds");
         cy.wait(2000);

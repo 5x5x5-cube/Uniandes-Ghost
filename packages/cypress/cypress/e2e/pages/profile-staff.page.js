@@ -1,8 +1,11 @@
-export class ProfileStaff {
+import { PageObjectClass } from "./page-object.class";
 
+export class ProfileStaff extends PageObjectClass {
     clickProfile() {
         cy.wait(1000);
-        cy.get(".relative.inline-flex.select-none.items-center.justify-center.overflow-hidden.rounded-full.align-middle").click();
+        cy.get(
+            ".relative.inline-flex.select-none.items-center.justify-center.overflow-hidden.rounded-full.align-middle"
+        ).click();
         cy.wait(1000);
     }
 
@@ -14,30 +17,26 @@ export class ProfileStaff {
     clickSave() {
         cy.get("button.cursor-pointer.bg-black.text-white").click();
         cy.wait(1000);
-       
     }
 
     getName(name) {
-        cy.get('h1.text-white')
-            .invoke('text')
+        cy.get("h1.text-white")
+            .invoke("text")
             .then((elementText) => {
                 expect(elementText.trim()).to.equal(name);
             });
-    
     }
 
     setName(name) {
-        cy.get('input.bg-transparent').first().clear().type(name);
+        cy.get("input.bg-transparent").first().clear().type(name);
         cy.wait(1000);
     }
 
     verifyProfile() {
-        cy.get('.text-md.font-semibold.capitalize.text-white')
-            .invoke('text')
+        cy.get(".text-md.font-semibold.capitalize.text-white")
+            .invoke("text")
             .then((elementText) => {
-                expect(elementText.trim()).to.equal('owner');
+                expect(elementText.trim()).to.equal("owner");
             });
     }
-
-
 }

@@ -1,6 +1,9 @@
-export class LoginPage {
+import { PageObjectClass } from "./page-object.class";
+
+export class LoginPage extends PageObjectClass {
     visit() {
         cy.visit("/ghost/#/signin");
+        cy.wait(1000);
     }
 
     enterEmail(email) {

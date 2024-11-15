@@ -1,4 +1,6 @@
-export class MembersPage {
+import { PageObjectClass } from "./page-object.class";
+
+export class MembersPage extends PageObjectClass {
     openNewMemberForm() {
         cy.get('a[href="#/members/new/"]').click();
         cy.url().should("include", "/#/members/new");

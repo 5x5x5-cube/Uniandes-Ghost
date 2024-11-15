@@ -1,5 +1,6 @@
 import DashboardPage from "./pages/dashboard.page";
 import StaticPage from "./pages/static-page.page";
+import PageListPage from "./pages/page-list.page";
 
 describe("F007 Ghost Admin - Static Page Management", () => {
     it("E00701 - should create, and publish a new static page successfully", () => {
@@ -49,7 +50,7 @@ describe("F007 Ghost Admin - Static Page Management", () => {
         const newPageContent = "This is the updated About Us page content.";
 
         cy.log("Given: I am on the Pages screen");
-        DashboardPage.navigateToPagesList();
+        PageListPage.navigateToPublishedPagesList();
 
         cy.log("When: I select the existing page to edit");
         StaticPage.selectPage(existingPageTitle);

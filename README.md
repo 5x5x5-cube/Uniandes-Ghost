@@ -78,3 +78,18 @@ Desde la raíz del monorepo ejecutar el siguiente comando para correar las prueb
 ```sh
 npm run test:cypress
 ```
+# Resemble
+
+### Configuración
+
+-   Agregar los casos generados en las herramientas anteriores en las carpetas respectivas de sus versiones 
+-   Version anterior: ./results/kraken/GHOST4.5
+-   Nueva version: ./results/kraken/GHOST5.9
+-   El resultado se puede ver en el archivo de la carpeta raiz: /report/index.html
+
+### Ejecución
+Desde la raíz del monorepo ejecutar el siguiente comando
+```sh
+npm run test:resemble
+```
+

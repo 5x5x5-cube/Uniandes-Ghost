@@ -1,4 +1,6 @@
-export class PostListPage {
+import { PageObjectClass } from "./page-object.class";
+
+export class PostListPage extends PageObjectClass {
     postListPage = "/ghost/#/posts";
 
     visit() {
