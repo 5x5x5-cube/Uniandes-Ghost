@@ -1,6 +1,6 @@
 {
-    "urlIni": "./results/cypress/GHOST4.5",
-    "urlCom": "./results/cypress/GHOST5.9",
+    "urlBase": "./results/cypress/Ghost-4.5.0",
+    "urlRT": "./results/cypress/Ghost-5.96.0",
     "browsers": ["chromium", "webkit", "firefox"],
     "valMinToPassedComparison": 20,
     "options": {

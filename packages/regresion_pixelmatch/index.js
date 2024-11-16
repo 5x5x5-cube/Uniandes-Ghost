@@ -1,7 +1,102 @@
-const fs = require("fs");
-const { PNG } = require("pngjs");
-const { options } = require("./config.json");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { PNG } from "pngjs";
+import { fileURLToPath } from "url";
+import config from "./config.json" assert { type: "json" };
+import cliProgress from "cli-progress";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const baseVersionFolder = config.urlBase;
+const rtVersionFolder = config.urlRT;
+
+async function generateVRT() {
+    const baseVersionContents = await readDirectoryRecursively(
+        baseVersionFolder
+    );
+
+    const baseVersionImages = baseVersionContents.filter((file) =>
+        file.endsWith(".png")
+    );
+
+    const baseVersionImagesRelative = baseVersionImages.map((file) =>
+        path.relative(baseVersionFolder, file)
+    );
+
+    if (baseVersionImagesRelative.length === 0) {
+        logToConsole("No images found in the base version folder");
+        return;
+    }
+
+    logToConsole(
+        `Found ${baseVersionImagesRelative.length} images in base version to compare`
+    );
+    logToConsole(
+        "-------------------------------------------------------------"
+    );
+    logToConsole("Starting comparison...");
+
+    const progressBar = new cliProgress.SingleBar(
+        {},
+        cliProgress.Presets.shades_classic
+    );
+    progressBar.start(baseVersionImagesRelative.length, 0);
+
+    await Promise.allSettled(
+        baseVersionImagesRelative.map((imageRelativePath) =>
+            makeVRTComparison(imageRelativePath, progressBar)
+        )
+    );
+
+    progressBar.stop();
+}
+
+function logToConsole(message) {
+    console.log(`\n${message}\n`);
+}
+
+async function makeVRTComparison(imageRelativePath, progressBar) {
+    const rtVersionImagePath = path.join(rtVersionFolder, imageRelativePath);
+
+    const baseVersionImagePath = path.join(
+        baseVersionFolder,
+        imageRelativePath
+    );
+
+    if (!fs.existsSync(rtVersionImagePath)) {
+        logToConsole(
+            `\nImage not found in the RT version: ${rtVersionImagePath}`
+        );
+        progressBar.increment();
+        return;
+    }
+
+    const diff = await compareImagesWithPixelmatch(
+        baseVersionImagePath,
+        rtVersionImagePath
+    );
+
+    writeCompartisonImage(imageRelativePath, diff);
+    progressBar.increment();
+}
+
+function readDirectoryRecursively(dir) {
+    let results = [];
+
+    const list = fs.readdirSync(dir);
+    list.forEach((file) => {
+        file = path.resolve(dir, file);
+        const stat = fs.statSync(file);
+
+        if (stat && stat.isDirectory()) {
+            results = results.concat(readDirectoryRecursively(file));
+        } else {
+            results.push(file);
+        }
+    });
+
+    return results;
+}
 
 async function readFile(filePath) {
     return new Promise((resolve, reject) => {
@@ -31,13 +126,13 @@ async function compareImagesWithPixelmatch(beforePath, afterPath) {
         diff.data,
         width,
         height,
-        options
+        config.options
     );
 
     return diff;
 }
 
-function writeFileToPath(filePath, data) {
+function writeCompartisonImage(filePath, data) {
     const basePath = path.resolve(__dirname, "results/compare");
 
     const directoryPath = filePath.split("/").slice(0, -1);
@@ -52,20 +147,12 @@ function writeFileToPath(filePath, data) {
 }
 
 async function main() {
-    const diff = await compareImagesWithPixelmatch(
-        `./results/cypress/Ghost-4.5.0/F001 - Modificar titulo del sitio/E00101 - Modificación titulo de sitio web/Paso_7.png`,
-        `./results/cypress/Ghost-5.96.0/F001 - Modificar titulo del sitio/E00101 - Modificación titulo de sitio web/Paso_7.png`
-    );
+    await generateVRT();
 
-    writeFileToPath(
-        `./results/compare/F001 - Modificar titulo del sitio/E00101 - Modificación titulo de sitio web/Paso_7.png`,
-        diff
-    );
-
-    console.log(
+    logToConsole(
         "-------------------------------------------------------------"
     );
-    console.log(
+    logToConsole(
         "Execution finished. Check the report under the results folder"
     );
 }
