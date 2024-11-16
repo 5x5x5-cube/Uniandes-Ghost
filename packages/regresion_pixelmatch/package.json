@@ -1,0 +1,18 @@
+{
+  "name": "regresion_pixelmatch",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cli-progress": "^3.12.0",
+    "log-update": "^6.1.0",
+    "pixelmatch": "^6.0.0"
+  }
+}
