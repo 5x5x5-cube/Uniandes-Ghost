@@ -60,7 +60,7 @@ AfterStep(async function(Scenario){
   const folderPath = "./reports/screenshot/"+Scenario.pickle.name.replace(/\s/g,'');
   
   if (!fs.existsSync(folderPath)){
-    fs.mkdir(folderPath, { recursive: true }, (error) => {
+    await fs.mkdir(folderPath, { recursive: true }, (error) => {
       if (error) {
         console.error('Error al crear el directorio:', error);
       } else {
