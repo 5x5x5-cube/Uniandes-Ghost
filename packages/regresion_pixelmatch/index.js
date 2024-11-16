@@ -4,11 +4,13 @@ import { PNG } from "pngjs";
 import { fileURLToPath } from "url";
 import config from "./config.json" assert { type: "json" };
 import cliProgress from "cli-progress";
+import { generateReport } from "./generate-report.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const baseVersionFolder = config.urlBase;
 const rtVersionFolder = config.urlRT;
+const comparisonFolder = config.comparisonOutput;
 
 async function generateVRT() {
     const baseVersionContents = await readDirectoryRecursively(
@@ -133,7 +135,7 @@ async function compareImagesWithPixelmatch(beforePath, afterPath) {
 }
 
 function writeCompartisonImage(filePath, data) {
-    const basePath = path.resolve(__dirname, "results/compare");
+    const basePath = path.resolve(__dirname, comparisonFolder);
 
     const directoryPath = filePath.split("/").slice(0, -1);
     const fileName = filePath.split("/").pop();
@@ -148,6 +150,7 @@ function writeCompartisonImage(filePath, data) {
 
 async function main() {
     await generateVRT();
+    await generateReport();
 
     logToConsole(
         "-------------------------------------------------------------"
