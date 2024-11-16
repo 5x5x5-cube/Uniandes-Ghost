@@ -108,7 +108,7 @@ function createReport(datetime, response) {
   return `
   <html>
     <head>
-      <title> VRT Report </title>
+      <title> Reporte UNIANDES </title>
       <link href="index.css" type="text/css" rel="stylesheet">
     </head>
     <body>
