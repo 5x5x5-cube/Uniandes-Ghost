@@ -13,7 +13,8 @@ module.exports = defineConfig({
         },
         setupNodeEvents(on, config) {
             on("after:screenshot", (details) => {
-                if (!details.name || process.env.CYPRESS_SCREENSHOTS !== "true")
+                
+                if (!details.name || process.env.CYPRESS_SCREENSHOTS != "true")
                     return;
 
                 const basePath = path.resolve(
@@ -22,9 +23,9 @@ module.exports = defineConfig({
                 );
 
                 const nameParts = details.name.split("/").slice(0, -1);
-                const fileName = details.path.split("/").pop();
+                const fileName = details.path.split(path.sep).pop();
                 const dirPath = path.join(basePath, ...nameParts);
-
+                
                 fs.mkdirSync(dirPath, { recursive: true });
 
                 const newPath = path.join(dirPath, fileName);
@@ -36,9 +37,9 @@ module.exports = defineConfig({
                         if (err) return reject(err);
 
                         let currentPath = details.path
-                            .split("/")
+                            .split(path.sep)
                             .slice(0, -1)
-                            .join("/");
+                            .join(path.sep);
                         while (currentPath !== basePath) {
                             fs.rmdirSync(currentPath, { recursive: true });
                             currentPath = path.dirname(currentPath);
