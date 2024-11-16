@@ -43,22 +43,24 @@ Desde la raíz del monorepo ejecutar el siguiente comando para correar las prueb
 ```sh
 npm run test:kraken
 ```
+
 #### Ejecutar Kraken con la version 4.5
 
 -   Debemos estar en la raiz del proyecto y hacer los siguientes pasos
--   Borrar el contenido de la carpeta ./package/kraken/feature/**.* 
--   Copiar el contenido completo de la carpeta ./package/kraken/ghost4.5/feature/**.* y copiarlo en ./package/kraken/feature/**.* 
+-   Borrar el contenido de la carpeta ./package/kraken/feature/\*_._
+-   Copiar el contenido completo de la carpeta ./package/kraken/ghost4.5/feature/**.\* y copiarlo en ./package/kraken/feature/**.\*
 -   Ejecutar con el comando npm run test:kraken
 -   El resultado estara en la carpeta screeshots dividido por escenario de prueba
 
 #### Ejecutar Kraken con la version 5.96
 
 -   Debemos estar en la raiz del proyecto y hacer los siguientes pasos
--   Borrar el contenido de la carpeta ./package/kraken/feature/**.* 
--   Copiar el contenido completo de la carpeta ./package/kraken/ghost5.96/feature/**.* y copiarlo en ./package/kraken/feature/**.* 
+-   Borrar el contenido de la carpeta ./package/kraken/feature/\*_._
+-   Copiar el contenido completo de la carpeta ./package/kraken/ghost5.96/feature/**.\* y copiarlo en ./package/kraken/feature/**.\*
 -   Ejecutar con el comando npm run test:kraken
 -   El resultado estara en la carpeta screeshots dividido por escenario de prueba
-- 
+-
+
 # Cypress
 
 ### Configuración
@@ -97,30 +99,72 @@ npm run test:cypress
 #### Ejecutar Cypress con la version 4.5
 
 -   Debemos estar en la raiz del proyecto y hacer los siguientes pasos
--   Borrar el contenido de la carpeta ./package/cypress/cypress/**.* 
--   Copiar el contenido completo de la carpeta ./package/cypress/ghost4.5/**.* y copiarlo en ./package/cypress/cypress/**.* 
+-   Borrar el contenido de la carpeta ./package/cypress/cypress/\*_._
+-   Copiar el contenido completo de la carpeta ./package/cypress/ghost4.5/**.\* y copiarlo en ./package/cypress/cypress/**.\*
+-   Modificar el archivo `.env` con la url y la versión de Ghost que se quiere probar y activar la generación de screenshots
+
+```
+GHOST_URL=http://localhost:2368
+GHOST_VERSION=4.5.0
+ADMIN_USERNAME=<?>
+ADMIN_PASSWORD=<?>
+CYPRESS_SCREENSHOTS=TRUE
+```
+
 -   Ejecutar con el comando npm run test:cypress
--   El resultado estara en la carpeta screeshots dividido por escenario de prueba
+-   El resultado de las pruebas estará en la carpeta `package/cypress/cypress/screeshots` organizado en features y escenarios
 
 #### Ejecutar Cypress con la version 5.96
 
 -   Debemos estar en la raiz del proyecto y hacer los siguientes pasos
--   Borrar el contenido de la carpeta ./package/cypress/cypress/**.* 
--   Copiar el contenido completo de la carpeta ./package/cypress/ghost5.96/**.* y copiarlo en ./package/cypress/cypress/**.* 
+-   Borrar el contenido de la carpeta ./package/cypress/cypress/\*_._
+-   Copiar el contenido completo de la carpeta ./package/cypress/ghost5.96/**.\* y copiarlo en ./package/cypress/cypress/**.\*
+-   Modificar el archivo `.env` con la url y la versión de Ghost que se quiere probar y activar la generación de screenshots
+
+```
+GHOST_URL=http://localhost:2368
+GHOST_VERSION=5.96.0
+ADMIN_USERNAME=<?>
+ADMIN_PASSWORD=<?>
+CYPRESS_SCREENSHOTS=TRUE
+```
+
 -   Ejecutar con el comando npm run test:cypress
--   El resultado estara en la carpeta screeshots dividido por escenario de prueba
+-   El resultado de las pruebas estará en la carpeta `package/cypress/cypress/screeshots` organizado en features y escenarios
+
 # Resemble
 
 ### Configuración
 
--   Agregar los casos generados en las herramientas anteriores en las carpetas respectivas de sus versiones 
+-   Agregar los casos generados en las herramientas anteriores en las carpetas respectivas de sus versiones
 -   Version anterior: ./results/kraken/GHOST4.5
 -   Nueva version: ./results/kraken/GHOST5.9
 -   El resultado se puede ver en el archivo de la carpeta raiz: /report/index.html
-  
+
 ### Ejecución
+
 Desde la raíz del monorepo ejecutar el siguiente comando
+
 ```sh
 npm run test:resemble
 ```
+
 El resultado se puede ver en el archivo de la carpeta raiz: /report/index.html
+
+# Pixelmatch
+
+### Configuracio2n
+
+-   Agregar las carpetas de screenshots generadas dentro del paquete Cypress en la ruta `packages/regresion_pixelmatch/results/cypress`. Por ejemplo:
+-   Version base: `packages/regresion_pixelmatch/results/cypress/Ghost-4.5.0`
+-   Version RT: `packages/regresion_pixelmatch/results/cypress/Ghost-5.96.0`
+
+### Ejecución
+
+Desde la raíz del monorepo ejecutar el siguiente comando
+
+```sh
+npm run test:pixelmatch
+```
+
+Esto generará un reporte en la siguiente ubicación `packages/regresion_pixelmatch/results/report/index.html`
