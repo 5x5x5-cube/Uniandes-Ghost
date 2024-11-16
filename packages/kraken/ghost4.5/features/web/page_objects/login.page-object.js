@@ -32,7 +32,7 @@ class LoginPageObject {
     }
 
     async getRetryButton() {
-        const element = await this.driver.$("#ember5 > span");
+        const element = await this.driver.$('button[type="submit"] > span');
         return await element.getText();
     }
 

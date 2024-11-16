@@ -37,10 +37,18 @@ class AdminPageObject {
         return await element.click();
     }
 
+    async clickStaff() {
+        const element = await this.driver.$(
+            'a[href="#/staff/"]'
+        );
+        return await element.click();
+    }
+
+
 
     async getUnsavedChangesMessage() {
         const element = await this.driver.$(
-            'div[data-test-modal="unsaved-settings"] h1'
+            '.modal-header > h1'
         );
         return await element.getText();
     }

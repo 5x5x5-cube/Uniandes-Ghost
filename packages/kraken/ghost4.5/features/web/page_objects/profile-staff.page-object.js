@@ -6,30 +6,30 @@ class ProfileStaffPageObject {
 
 
     async clickProfile() {
-        const element = await this.driver.$("button.ml-2.inline-block.text-sm.font-bold.text-green");
+        const element = await this.driver.$(".gh-badge.owner");
         return await element.click();
     }
 
     async clickSave() {
-        const element = await this.driver.$("button.cursor-pointer.bg-black.text-white");
+        const element = await this.driver.$(".gh-btn.gh-btn-primary.gh-btn-icon.ember-view");
         return await element.click();
     }
 
     async getOwnerSection() {
-        const element = await this.driver.$(".text-md.font-semibold.capitalize.text-white");
+        const element = await this.driver.$(".gh-btn.gh-btn-default.user-cover-edit > span");
         return await element.getText();
     }
 
     async getName() {
         const element = await this.driver.$(
-            'h1.text-white'
+            '.gh-canvas-title'
         );
         return await element.getText();
     }
 
     async setName(name) {
         const element = await this.driver.$(
-            'input.bg-transparent'
+            '.user-name.ember-text-field.gh-input.ember-view'
         );
         await element.clearValue();
         return await element.setValue(name);

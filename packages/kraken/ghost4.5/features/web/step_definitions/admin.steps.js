@@ -18,3 +18,7 @@ When("I navegate to admin page", async function () {
     return await this.adminPageObject.navigateToAdminPage();
 });
 
+When("I click in staff", async function () {
+    return await this.adminPageObject.clickStaff();
+});
+

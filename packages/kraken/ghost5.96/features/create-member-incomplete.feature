@@ -2,7 +2,7 @@ Feature: F008 - Crear miembro
 
 
 @user200 @web
-Scenario: E00802 - Crear un nuevo miembro con información incompleta
+Scenario: E00802 - Crear un nuevo miembro con informacion incompleta
   Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"
   When I navigate to the Members page
   And I click on New Member

@@ -20,14 +20,14 @@ class TagEditorPageObject {
 
     async setName(name) {
         const element = await this.driver.$(
-            'input[data-test-input="tag-name"]'
+            '#tag-name'
         );
         await element.setValue(name);
         return await this.driver.pause(1000);
     }
 
     async saveChanges() {
-        const element = await this.driver.$('button[data-test-button="save"]');
+        const element = await this.driver.$('.gh-btn.gh-btn-primary.gh-btn-icon.ember-view');
         await element.click();
         return await this.driver.pause(1000);
     }
@@ -39,7 +39,7 @@ class TagEditorPageObject {
     }
 
     async exitEditor() {
-        const element = await this.driver.$('a[data-test-link="tags-back"]');
+        const element = await this.driver.$('a[href="#/dashboard/"]');
         await element.click();
         return await this.driver.pause(1000);
     }

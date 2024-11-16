@@ -4,7 +4,7 @@ Feature: F004 - Ver perfil de staff
 Scenario: E00401 - Ver perfil desde panel administrativo
   Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"
   And I wait for 2 seconds
-  And I click in admin setting
+  And I click in staff
   And I wait for 4 seconds
   When I click your profile
   And I wait for 2 seconds
@@ -14,7 +14,7 @@ Scenario: E00401 - Ver perfil desde panel administrativo
 Scenario: E00402 - Ver perfil desde panel administrativo y modificar nombre
   Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"
   And I wait for 2 seconds
-  And I click in admin setting
+  And I click in staff
   And I wait for 1 seconds
   When I click your profile
   And I wait for 2 seconds

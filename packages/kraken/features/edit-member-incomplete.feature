@@ -2,7 +2,7 @@ Feature: F009 - Editar miembro
 
 
 @user200 @web
-Scenario: E00902 - Editar un miembro con información incompleta
+Scenario: E00902 - Editar un miembro con informacion incompleta
   Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"
   When I navigate to the Members page
   And I click on the Edit button for the first member

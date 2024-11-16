@@ -18,7 +18,7 @@ When("I click in save", async function () {
 
 Then("I should be on the profile staff section", async function () {
     const elementText = await this.profileStaffPageObject.getOwnerSection();
-    expect(elementText).to.equal("Owner");
+    expect(elementText).to.equal("Change Cover");
 });
 
 Then('I should be on the profile staff section with name {kraken-string}', async function (name) {
