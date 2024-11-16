@@ -43,7 +43,22 @@ Desde la raíz del monorepo ejecutar el siguiente comando para correar las prueb
 ```sh
 npm run test:kraken
 ```
+#### Ejecutar Kraken con la version 4.5
 
+-   Debemos estar en la raiz del proyecto y hacer los siguientes pasos
+-   Borrar el contenido de la carpeta ./package/kraken/feature/**.* 
+-   Copiar el contenido completo de la carpeta ./package/kraken/ghost4.5/feature/**.* y copiarlo en ./package/kraken/feature/**.* 
+-   Ejecutar con el comando npm run test:kraken
+-   El resultado estara en la carpeta screeshots dividido por escenario de prueba
+
+#### Ejecutar Kraken con la version 5.96
+
+-   Debemos estar en la raiz del proyecto y hacer los siguientes pasos
+-   Borrar el contenido de la carpeta ./package/kraken/feature/**.* 
+-   Copiar el contenido completo de la carpeta ./package/kraken/ghost5.96/feature/**.* y copiarlo en ./package/kraken/feature/**.* 
+-   Ejecutar con el comando npm run test:kraken
+-   El resultado estara en la carpeta screeshots dividido por escenario de prueba
+- 
 # Cypress
 
 ### Configuración
@@ -79,23 +94,6 @@ Desde la raíz del monorepo ejecutar el siguiente comando para correar las prueb
 npm run test:cypress
 ```
 # Resemble
-
-
-#### Ejecutar Kraken con la version 4.5
-
--   Debemos estar en la raiz del proyecto y hacer los siguientes pasos
--   Borrar el contenido de la carpeta ./package/kraken/feature/**.* 
--   Copiar el contenido completo de la carpeta ./package/kraken/ghost4.5/feature/**.* y copiarlo en ./package/kraken/feature/**.* 
--   Ejecutar con el comando npm run test:kraken
--   El resultado estara en la carpeta screeshots dividido por escenario de prueba
-
-#### Ejecutar Kraken con la version 5.96
-
--   Debemos estar en la raiz del proyecto y hacer los siguientes pasos
--   Borrar el contenido de la carpeta ./package/kraken/feature/**.* 
--   Copiar el contenido completo de la carpeta ./package/kraken/ghost5.96/feature/**.* y copiarlo en ./package/kraken/feature/**.* 
--   Ejecutar con el comando npm run test:kraken
--   El resultado estara en la carpeta screeshots dividido por escenario de prueba
 
 ### Configuración
 
