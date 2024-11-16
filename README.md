@@ -80,16 +80,33 @@ npm run test:cypress
 ```
 # Resemble
 
+
+#### Ejecutar Kraken con la version 4.5
+
+-   Debemos estar en la raiz del proyecto y hacer los siguientes pasos
+-   Borrar el contenido de la carpeta ./package/kraken/feature/**.* 
+-   Copiar el contenido completo de la carpeta ./package/kraken/ghost4.5/feature/**.* y copiarlo en ./package/kraken/feature/**.* 
+-   Ejecutar con el comando npm run test:kraken
+-   El resultado estara en la carpeta screeshots dividido por escenario de prueba
+
+#### Ejecutar Kraken con la version 5.96
+
+-   Debemos estar en la raiz del proyecto y hacer los siguientes pasos
+-   Borrar el contenido de la carpeta ./package/kraken/feature/**.* 
+-   Copiar el contenido completo de la carpeta ./package/kraken/ghost5.96/feature/**.* y copiarlo en ./package/kraken/feature/**.* 
+-   Ejecutar con el comando npm run test:kraken
+-   El resultado estara en la carpeta screeshots dividido por escenario de prueba
+
 ### Configuración
 
 -   Agregar los casos generados en las herramientas anteriores en las carpetas respectivas de sus versiones 
 -   Version anterior: ./results/kraken/GHOST4.5
 -   Nueva version: ./results/kraken/GHOST5.9
 -   El resultado se puede ver en el archivo de la carpeta raiz: /report/index.html
-
+  
 ### Ejecución
 Desde la raíz del monorepo ejecutar el siguiente comando
 ```sh
 npm run test:resemble
 ```
-
+El resultado se puede ver en el archivo de la carpeta raiz: /report/index.html
