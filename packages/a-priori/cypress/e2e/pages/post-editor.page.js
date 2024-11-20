@@ -28,7 +28,9 @@ export class PostEditorPage extends PageObjectClass {
     }
 
     setTitle(title) {
-        cy.get("textarea[data-test-editor-title-input]").type(title);
+        cy.get("textarea[data-test-editor-title-input]").type(title, {
+            parseSpecialCharSequences: false,
+        });
     }
 
     setContent(content) {
