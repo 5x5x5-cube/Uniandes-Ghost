@@ -7,7 +7,8 @@
     "test:kraken": "npm run test --workspace=packages/kraken",
     "test:cypress": "npm run test --workspace=packages/cypress",
     "test:resemble": "npm run test --workspace=packages/regresion_resemble",
-    "test:pixelmatch": "npm run test --workspace=packages/regresion_pixelmatch"
+    "test:pixelmatch": "npm run test --workspace=packages/regresion_pixelmatch",
+    "test:dynamicpool": "npm run test --workspace=packages/pool-dinamico"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,8 @@
     "packages/cypress",
     "packages/kraken",
     "packages/regresion_resemble",
-    "packages/regresion_pixelmatch"
+    "packages/regresion_pixelmatch",
+    "packages/pool-dinamico"
   ],
   "engines": {
     "npm": ">=7.0.0",
