@@ -20,6 +20,7 @@ import {
     PostEditorPage,
     PostListPage,
     PostViewerPage,
+    ChangeLanguage,
 } from "../e2e/pages";
 import "./commands";
 
@@ -32,4 +33,15 @@ before(() => {
     cy.postEditorPage = new PostEditorPage();
     cy.postListPage = new PostListPage();
     cy.postViewerPage = new PostViewerPage();
+    cy.changeLanguage = new ChangeLanguage();
+});
+
+before(() => {
+    const adminUsername = Cypress.env("ADMIN_USERNAME");
+    const adminPassword = Cypress.env("ADMIN_PASSWORD");
+
+    cy.log(
+        `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
+    );
+    cy.loginPage.loginAs(adminUsername, adminPassword);
 });

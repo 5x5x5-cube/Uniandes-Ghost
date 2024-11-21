@@ -1,16 +1,6 @@
 import { dataPool } from "../fixtures/create-post";
 
 describe("F002 - Crear post", () => {
-    before(() => {
-        const adminUsername = Cypress.env("ADMIN_USERNAME");
-        const adminPassword = Cypress.env("ADMIN_PASSWORD");
-
-        cy.log(
-            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
-        );
-        cy.loginPage.loginAs(adminUsername, adminPassword);
-    });
-
     dataPool.forEach(({ test, title, content, url_word }) => {
         it("E00201 - Crear un post y publicarlo", () => {
             cy.log(test.description);
