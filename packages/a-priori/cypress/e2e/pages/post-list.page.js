@@ -18,4 +18,8 @@ export class PostListPage extends PageObjectClass {
     getPostStatus(post) {
         return post.find(".gh-content-entry-status > span");
     }
+
+    getModalContent() {
+        return cy.get(".modal-content");
+    }
 }

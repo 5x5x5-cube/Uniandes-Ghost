@@ -1,5 +1,4 @@
-import { faker } from "@faker-js/faker";
-import naughtyStrings from "../fixtures/naughty-strings.json";
+import { dataPool } from "../fixtures/create-post";
 
 describe("F002 - Crear post", () => {
     before(() => {
@@ -12,10 +11,13 @@ describe("F002 - Crear post", () => {
         cy.loginPage.loginAs(adminUsername, adminPassword);
     });
 
-    naughtyStrings.forEach(({ value }) => {
+    dataPool.forEach(({ test, title, content, url_word }) => {
         it("E00201 - Crear un post y publicarlo", () => {
-            const postTitle = value;
-            const postUrl = faker.word.words(1);
+            cy.log(test.description);
+
+            const postTitle = title;
+            const postUrl = url_word;
+            const postContent = content;
 
             // Given
             cy.log("Given I am logged in as an admin");
@@ -25,19 +27,33 @@ describe("F002 - Crear post", () => {
             cy.postEditorPage.visit();
 
             // When
-            cy.log(
-                `When I create and publish a post with title "${postTitle}" and url "${postUrl}"`
-            );
-            cy.postEditorPage.createAndPublishPost(postTitle, postUrl);
+            cy.log(`When I set a title "${postTitle}"`);
+            cy.postEditorPage.setTitle(postTitle);
 
-            cy.log(`And I navigate to the post url "${postUrl}"`);
-            cy.postViewerPage.navigateToPost(postUrl);
+            cy.log(`And I set a conent "${postContent}"`);
+            cy.postEditorPage.setContent(postContent);
 
-            // Then
-            cy.log(
-                `Then I should see a page with the post title "${postTitle}"`
-            );
-            cy.postViewerPage.getPostTitle().should("have.text", postTitle);
+            cy.log(`And I set a URL "${postUrl}"`);
+            cy.postEditorPage.setUrl(postUrl);
+
+            if (test.outcome === "success") {
+                cy.log(`And I pubish the post`);
+                cy.postEditorPage.publishPost();
+
+                // Then
+                cy.log("Then I should see a success message");
+                cy.postListPage
+                    .getModalContent()
+                    .contains(test.assert_text)
+                    .should(test.assert_type);
+            } else if (test.outcome === "error") {
+                // Then
+                cy.log("Then I should not see publish button");
+                cy.postEditorPage.assertEditorButton(
+                    test.assert_text,
+                    test.assert_type
+                );
+            }
 
             cy.log("And I wait for 2 seconds");
             cy.wait(2000);

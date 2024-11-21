@@ -1,5 +1,4 @@
 import { PageObjectClass } from "./page-object.class";
-import { faker } from "@faker-js/faker";
 
 export class PostEditorPage extends PageObjectClass {
     postEditorPage = "/ghost/#/editor/post";
@@ -9,16 +8,7 @@ export class PostEditorPage extends PageObjectClass {
         cy.wait(1000);
     }
 
-    createAndPublishPost(title, url) {
-        this.setTitle(title);
-        this.setContent(faker.lorem.paragraph());
-        cy.wait(1000);
-        this.clickSettings();
-        cy.wait(1000);
-        this.setUrl(url);
-        cy.wait(1000);
-        this.clickSettings();
-        cy.wait(1000);
+    publishPost() {
         this.clickEditorButton("Publish");
         cy.wait(1000);
         this.clickContinue();
@@ -28,16 +18,20 @@ export class PostEditorPage extends PageObjectClass {
     }
 
     setTitle(title) {
-        cy.get("textarea[data-test-editor-title-input]").type(title, {
-            parseSpecialCharSequences: false,
-        });
+        const titleInput = cy.get("textarea[data-test-editor-title-input]");
+        titleInput.clear();
+        title &&
+            titleInput.type(title, {
+                parseSpecialCharSequences: false,
+            });
     }
 
     setContent(content) {
         const data = cy.get(
             'div[data-secondary-instance="false"] p[data-koenig-dnd-droppable="true"]'
         );
-        data.click().type(content);
+        data.click().clear();
+        content && data.click().type(content);
     }
 
     clickSettings() {
@@ -45,13 +39,25 @@ export class PostEditorPage extends PageObjectClass {
     }
 
     setUrl(url) {
+        this.clickSettings();
+        cy.wait(1000);
         const urlInput = cy.get("input#url");
         urlInput.clear({ force: true });
-        urlInput.type(url, { force: true });
+        url && urlInput.type(url, { force: true });
+        this.clickSettings();
+        cy.wait(1000);
+    }
+
+    getEditorButton(buttonName) {
+        return cy.get(`button.gh-btn-editor>span`).contains(buttonName);
+    }
+
+    assertEditorButton(buttonText, assertion) {
+        this.getEditorButton(buttonText).should(assertion);
     }
 
     clickEditorButton(buttonName) {
-        cy.get(`button.gh-btn-editor>span`).contains(buttonName).click();
+        this.getEditorButton(buttonName).click();
     }
 
     clickContinue() {
