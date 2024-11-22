@@ -23,6 +23,8 @@ import {
     ChangeLanguage,
     TagEditorPage,
     TagListPage,
+    MembersPage,
+    MemberListPage,
 } from "../e2e/pages";
 import "./commands";
 
@@ -38,6 +40,8 @@ before(() => {
     cy.changeLanguage = new ChangeLanguage();
     cy.tagEditorPage = new TagEditorPage();
     cy.tagListPage = new TagListPage();
+    cy.membersPage = new MembersPage();
+    cy.memberListPage = new MemberListPage();
 });
 
 before(() => {
