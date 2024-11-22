@@ -1,0 +1,17 @@
+{
+  "name": "a-priori",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "cypress": "npx cypress",
+    "test": "npx cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@faker-js/faker": "^9.2.0",
+    "cypress": "^13.16.0"
+  }
+}
