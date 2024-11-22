@@ -21,6 +21,8 @@ import {
     PostListPage,
     PostViewerPage,
     ChangeLanguage,
+    TagEditorPage,
+    TagListPage,
 } from "../e2e/pages";
 import "./commands";
 
@@ -34,6 +36,8 @@ before(() => {
     cy.postListPage = new PostListPage();
     cy.postViewerPage = new PostViewerPage();
     cy.changeLanguage = new ChangeLanguage();
+    cy.tagEditorPage = new TagEditorPage();
+    cy.tagListPage = new TagListPage();
 });
 
 before(() => {
