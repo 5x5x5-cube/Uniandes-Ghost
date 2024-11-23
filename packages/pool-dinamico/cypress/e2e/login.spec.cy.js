@@ -23,25 +23,63 @@ describe("F012 - Login feature", () => {
     });
 
     it("E01201 - Inicio de sesion con contrasena incorrecta", () => {
-        // Given
-        cy.log("Given I am on the login page");
-        cy.loginPage.visit();
+        cy.request({
+            method: 'GET',
+            url: 'https://my.api.mockaroo.com/login.json?key=07dfb270&count=1',
+        }).then((response) => {
+            const loginData = response.body[0];
 
-        // When
-        cy.log(`When I enter email "${adminUsername}"`);
-        cy.loginPage.enterEmail(Cypress.env("ADMIN_USERNAME"));
+            // Given
+            cy.log("Given I am on the login page");
+            cy.loginPage.visit();
 
-        cy.log("And I enter a wrong password");
-        cy.loginPage.enterPassword("wrong-pass");
+            // When
+            cy.log(`When I enter email "${Cypress.env("ADMIN_USERNAME")}"`);
+            cy.loginPage.enterEmail(Cypress.env("ADMIN_USERNAME"));
 
-        cy.log("And I click next Sign In");
-        cy.loginPage.clickSignIn();
+            cy.log("And I enter a wrong password");
+            cy.loginPage.enterPassword(loginData.password);
 
-        // Then
-        cy.log("Then an error message is shown");
-        cy.contains("Your password is incorrect.").should("be.visible");
+            cy.log("And I click next Sign In");
+            cy.loginPage.clickSignIn();
 
-        cy.log("And a retry button is shown");
-        cy.contains("Retry").should("be.visible");
+            // Then
+            cy.log("Then an error message is shown");
+            cy.contains("Your password is incorrect.").should("be.visible");
+
+            cy.log("And a retry button is shown");
+            cy.contains("Retry").should("be.visible");
+        });
+    });
+
+
+    it("E01201 - Inicio de sesion con email incorrecto", () => {
+        cy.request({
+            method: 'GET',
+            url: 'https://my.api.mockaroo.com/login.json?key=07dfb270&count=1',
+        }).then((response) => {
+            const loginData = response.body[0];
+
+            // Given
+            cy.log("Given I am on the login page");
+            cy.loginPage.visit();
+
+            // When
+            cy.log(`When I enter email "${loginData.email}"`);
+            cy.loginPage.enterEmail(loginData.email);
+
+            cy.log("And I enter a wrong password");
+            cy.loginPage.enterPassword(loginData.password);
+
+            cy.log("And I click next Sign In");
+            cy.loginPage.clickSignIn();
+
+            // Then
+            cy.log("Then an error message is shown");
+            cy.contains("There is no user with that email address").should("be.visible");
+
+            cy.log("And a retry button is shown");
+            cy.contains("Retry").should("be.visible");
+        });
     });
 });

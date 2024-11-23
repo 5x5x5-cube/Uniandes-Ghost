@@ -5,58 +5,72 @@ describe("F010 - Crear tag", () => {
     const adminPassword = Cypress.env("ADMIN_PASSWORD");
 
     it("E01001 - Crear una nueva etiqueta", () => {
-        const tagName = faker.word.words(2);
+        cy.request({
+            method: 'GET',
+            url: 'https://my.api.mockaroo.com/tag.json?key=07dfb270&count=1',
+        }).then((response) => {
+            const tagData = response.body[0];
 
-        // Given
-        cy.log(
-            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
-        );
-        cy.loginPage.loginAs(adminUsername, adminPassword);
+            const tagName = tagData.tag;
 
-        cy.log("And I am in the Tag editor page");
-        cy.tagEditorPage.navigateToTagEditorPage();
+            // Given
+            cy.log(
+                `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
+            );
+            cy.loginPage.loginAs(adminUsername, adminPassword);
 
-        // When
-        cy.log(`When I create a new tag "${tagName}"`);
-        cy.tagEditorPage.createTag(tagName);
+            cy.log("And I am in the Tag editor page");
+            cy.tagEditorPage.navigateToTagEditorPage();
 
-        cy.log("And I navigate to the Tag list page");
-        cy.tagListPage.navigateToTagListPage();
+            // When
+            cy.log(`When I create a new tag "${tagName}"`);
+            cy.tagEditorPage.createTag(tagName);
 
-        // Then
-        cy.log(`Then I should see the new tag name "${tagName}"`);
-        cy.tagListPage.getTagFromList(tagName).should("exist");
+            cy.log("And I navigate to the Tag list page");
+            cy.tagListPage.navigateToTagListPage();
 
-        cy.log("And I wait for 2 seconds");
-        cy.wait(2000);
+            // Then
+            cy.log(`Then I should see the new tag name "${tagName}"`);
+            cy.tagListPage.getTagFromList(tagName).should("exist");
+
+            cy.log("And I wait for 2 seconds");
+            cy.wait(2000);
+        });
     });
 
     it("E01002 - Mostrar un modal al salir del formulario sin guardar cambios", () => {
-        const tagName = faker.word.words(2);
+        cy.request({
+            method: 'GET',
+            url: 'https://my.api.mockaroo.com/tag.json?key=07dfb270&count=1',
+        }).then((response) => {
+            const tagData = response.body[0];
 
-        // Given
-        cy.log(
-            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
-        );
-        cy.loginPage.loginAs(adminUsername, adminPassword);
+            const tagName = tagData.tag;
 
-        cy.log("And I am in the Tag editor page");
-        cy.tagEditorPage.navigateToTagEditorPage();
+            // Given
+            cy.log(
+                `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
+            );
+            cy.loginPage.loginAs(adminUsername, adminPassword);
 
-        // When
-        cy.log(`When I type a new tag name "${tagName}"`);
-        cy.tagEditorPage.setName(tagName);
+            cy.log("And I am in the Tag editor page");
+            cy.tagEditorPage.navigateToTagEditorPage();
 
-        cy.log("And I exit the Tag editor page");
-        cy.tagEditorPage.exitEditor();
+            // When
+            cy.log(`When I type a new tag name "${tagName}"`);
+            cy.tagEditorPage.setName(tagName);
 
-        // Then
-        cy.log("Then I should see the unsaved tag changes modal");
-        cy.adminPage
-            .getUnsavedChangesMessage()
-            .should("equal", "Are you sure you want to leave this page?");
+            cy.log("And I exit the Tag editor page");
+            cy.tagEditorPage.exitEditor();
 
-        cy.log("And I wait for 2 seconds");
-        cy.wait(2000);
+            // Then
+            cy.log("Then I should see the unsaved tag changes modal");
+            cy.adminPage
+                .getUnsavedChangesMessage()
+                .should("equal", "Are you sure you want to leave this page?");
+
+            cy.log("And I wait for 2 seconds");
+            cy.wait(2000);
+        });
     });
 });
