@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-describe("F006 - Crear página estática", () => {
+describe("F006 - Crear página estatica", () => {
     it("E00601 - Crear página estática", () => {
         const pageTitle = faker.word.words(2);
         const pageUrl = faker.word.words(1);

@@ -2,7 +2,7 @@ describe("F012 - Login feature", () => {
     const adminUsername = Cypress.env("ADMIN_USERNAME");
     const adminPassword = Cypress.env("ADMIN_PASSWORD");
 
-    it("E01201 - Inicio de sesión exitoso", () => {
+    it("E01201 - Inicio de sesion exitoso", () => {
         // Given
         cy.log("Given I am on the login page");
         cy.loginPage.visit();
@@ -22,7 +22,7 @@ describe("F012 - Login feature", () => {
         cy.url().should("include", "/dashboard");
     });
 
-    it("E01201 - Inicio de sesión con contraseña incorrecta", () => {
+    it("E01201 - Inicio de sesion con contrasena incorrecta", () => {
         // Given
         cy.log("Given I am on the login page");
         cy.loginPage.visit();
