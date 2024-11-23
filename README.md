@@ -184,3 +184,11 @@ Desde la raíz del monorepo ejecutar el siguiente comando
 ```sh
 npm run test:dynamicpool
 ```
+
+# Escenario aleatorio
+
+Desde la raíz del monorepo ejecutar el siguiente comando
+
+```sh
+npm run test:aleatorio
+```
