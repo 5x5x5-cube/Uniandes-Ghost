@@ -1,6 +1,14 @@
 // cypress/integration/loginAndCreateMember.spec.js
+import { faker } from '@faker-js/faker';
 
 describe("F009 - Ghost Admin Login and Member Creation", () => {
+
+    const memberName = faker.name.fullName(); 
+    const memberEmail = faker.internet.email(); 
+    const updatedMemberName = faker.name.fullName(); 
+    const updatedMemberEmail = faker.internet.email();
+
+
     it("E00901 - should log in to Ghost admin and create a new member, then edit member successfully", () => {
         // When the user enters valid login credentials and submits
         cy.log(
@@ -21,11 +29,6 @@ describe("F009 - Ghost Admin Login and Member Creation", () => {
         cy.log("When the user opens the new member form");
         cy.membersPage.openNewMemberForm();
         cy.log("Then the new member form should be displayed");
-
-        const memberName = "New Member Cypress";
-        const memberEmail = `newmember${Date.now()}@example.com`;
-        const updatedMemberName = "Updated Member Name";
-        const updatedMemberEmail = `updated${Date.now()}@example.com`;
 
         cy.log("Given the user has entered the new member details");
         cy.membersPage.fillMemberDetailsComplete(memberName, memberEmail);
@@ -66,8 +69,6 @@ describe("F009 - Ghost Admin Login and Member Creation", () => {
         cy.log("Then the user should be redirected to the dashboard");
         cy.wait(5000);
         cy.dashboardPage.verifyDashboard();
-
-        const updatedMemberName = "Updated Member Name";
 
         cy.log("When: I navigate to the Members page");
         cy.dashboardPage.navigateToMembers();
