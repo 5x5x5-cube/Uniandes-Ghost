@@ -1,11 +1,14 @@
 import DashboardPage from "./pages/dashboard.page";
 import StaticPage from "./pages/static-page.page";
 import PageListPage from "./pages/page-list.page";
+import { faker } from '@faker-js/faker';
 
 describe("F007 Ghost Admin - Static Page Management", () => {
+
+    const pageTitle = faker.company.catchPhrase(); 
+    const pageContent = faker.lorem.paragraphs(2); 
+
     it("E00701 - should create, and publish a new static page successfully", () => {
-        const pageTitle = "About Us";
-        const pageContent = "This is the About Us page content for our site.";
 
         cy.log(
             'Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"'
@@ -45,9 +48,9 @@ describe("F007 Ghost Admin - Static Page Management", () => {
         cy.wait(5000);
         DashboardPage.verifyDashboard();
 
-        const existingPageTitle = "About Us";
-        const newPageTitle = "About Us - Updated";
-        const newPageContent = "This is the updated About Us page content.";
+        const existingPageTitle = pageTitle;
+        const newPageTitle = faker.company.catchPhrase(); 
+        const newPageContent = faker.lorem.paragraphs(2); 
 
         cy.log("Given: I am on the Pages screen");
         PageListPage.navigateToPublishedPagesList();
