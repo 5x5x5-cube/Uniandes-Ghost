@@ -1,3 +1,5 @@
+import { faker } from "@faker-js/faker";
+
 describe("F009 - Ghost Admin Login and Member Creation", () => {
     it("E00801 - should log in to Ghost admin and create a new member successfully", () => {
         // When the user enters valid login credentials and submits
@@ -20,8 +22,8 @@ describe("F009 - Ghost Admin Login and Member Creation", () => {
         cy.membersPage.openNewMemberForm();
         cy.log("Then the new member form should be displayed");
 
-        const memberName = "New Member Cypress";
-        const memberEmail = `newmember${Date.now()}@example.com`;
+        const memberName = faker.name.fullName(); 
+        const memberEmail = faker.internet.email(); 
 
         cy.log("Given the user has entered the new member details");
         cy.membersPage.fillMemberDetailsComplete(memberName, memberEmail);
@@ -55,7 +57,7 @@ describe("F009 - Ghost Admin Login and Member Creation", () => {
         cy.membersPage.openNewMemberForm();
 
         cy.log("Then the new member form should be displayed");
-        const memberName = "New Member Cypress";
+        const memberName = faker.name.fullName(); // Generate a random name
 
         cy.log(
             "Given the user has entered the new member details without an email"
