@@ -6,3 +6,4 @@ packages/kraken/.kraken/
 
 ## cypress
 packages/cypress/cypress/screenshots/
+packages/pool-dinamico/cypress/screenshots/

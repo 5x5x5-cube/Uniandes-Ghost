@@ -6,7 +6,10 @@
   "scripts": {
     "test:kraken": "npm run test --workspace=packages/kraken",
     "test:cypress": "npm run test --workspace=packages/cypress",
-    "test:resemble": "npm run test --workspace=packages/regresion_resemble"
+    "test:resemble": "npm run test --workspace=packages/regresion_resemble",
+    "test:pixelmatch": "npm run test --workspace=packages/regresion_pixelmatch",
+    "test:dynamicpool": "npm run test --workspace=packages/pool-dinamico",
+    "test:a-priori": "npm run test --workspace=packages/a-priori"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +17,10 @@
   "workspaces": [
     "packages/cypress",
     "packages/kraken",
-    "packages/regresion_resemble"
+    "packages/regresion_resemble",
+    "packages/regresion_pixelmatch",
+    "packages/pool-dinamico",
+    "packages/a-priori"
   ],
   "engines": {
     "npm": ">=7.0.0",
