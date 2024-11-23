@@ -83,4 +83,29 @@ describe("F009 - Ghost Admin Login and Member Creation", () => {
         cy.log("Then: I should see an error message for invalid email");
         cy.membersPage.verifyEmailError();
     });
+
+    it("E00904 - should show an error for invalid email format", () => {
+        const memberName = faker.name.fullName();
+        const invalidEmail = "invalid-email"; // Invalid email format
+    
+        cy.log('Given I am an admin logged in with valid credentials');
+        cy.loginPage.loginAs(Cypress.env("ADMIN_USERNAME"), Cypress.env("ADMIN_PASSWORD"));
+    
+        cy.log("Then I should be redirected to the dashboard");
+        cy.dashboardPage.verifyDashboard();
+    
+        cy.log("When I navigate to the Members section and open the new member form");
+        cy.dashboardPage.navigateToMembers();
+        cy.membersPage.openNewMemberForm();
+    
+        cy.log(`And I enter the name "${memberName}" and invalid email "${invalidEmail}"`);
+        cy.membersPage.fillMemberDetailsComplete(memberName, invalidEmail);
+    
+        cy.log("When I try to save the new member");
+        cy.membersPage.saveMember();
+    
+        cy.log("Then an error message should be displayed for the invalid email format");
+        cy.membersPage.verifyEmailError();
+    });
+    
 });
