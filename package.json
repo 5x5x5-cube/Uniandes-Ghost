@@ -6,15 +6,23 @@
   "scripts": {
     "test:kraken": "npm run test --workspace=packages/kraken",
     "test:cypress": "npm run test --workspace=packages/cypress",
-    "test:resemble": "npm run test --workspace=packages/regresion_resemble"
+    "test:resemble": "npm run test --workspace=packages/regresion_resemble",
+    "test:pixelmatch": "npm run test --workspace=packages/regresion_pixelmatch",
+    "test:dynamicpool": "npm run test --workspace=packages/pool-dinamico",
+    "test:a-priori": "npm run test --workspace=packages/a-priori",
+    "test:aleatorio": "npm run test --workspace=packages/aleatorio"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "workspaces": [
-    "packages/cypress",
+   "packages/cypress",
     "packages/kraken",
-    "packages/regresion_resemble"
+    "packages/regresion_resemble",
+    "packages/regresion_pixelmatch",
+    "packages/pool-dinamico",
+    "packages/a-priori",
+    "packages/aleatorio"
   ],
   "engines": {
     "npm": ">=7.0.0",
