@@ -103,5 +103,41 @@ describe("F009 - Ghost Admin Login and Member Creation", () => {
         cy.log("Then the new member should be created successfully");
         cy.membersPage.verifyMemberCreation();
     });
+
+    it("E00804 - should log in and create a new member with a long email successfully", () => {
+        cy.log(
+            'Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"'
+        );
+        cy.loginPage.loginAs(
+            Cypress.env("ADMIN_USERNAME"),
+            Cypress.env("ADMIN_PASSWORD")
+        );
+    
+        cy.log("Then the user should be redirected to the dashboard");
+        cy.wait(5000);
+        cy.dashboardPage.verifyDashboard();
+    
+        cy.log("Given the user navigates to the Members section");
+        cy.dashboardPage.navigateToMembers();
+    
+        cy.log("When the user opens the new member form");
+        cy.membersPage.openNewMemberForm();
+        cy.log("Then the new member form should be displayed");
+    
+        const memberName = faker.name.fullName(); // Generate a random name
+        const longEmailLocalPart = faker.lorem.words(5).replace(/\s+/g, ''); // Long local part
+        const longMemberEmail = `${longEmailLocalPart}@${faker.internet.domainName()}`; // Combine with domain name
+  
+   
+        cy.log("Given the user has entered the new member details with a long email");
+        cy.membersPage.fillMemberDetailsComplete(memberName, longMemberEmail);
+    
+        cy.log("When the user saves the new member");
+        cy.membersPage.saveMember();
+    
+        cy.log("Then the new member should be created successfully");
+        cy.membersPage.verifyMemberCreation();
+    });
+    
     
 });
