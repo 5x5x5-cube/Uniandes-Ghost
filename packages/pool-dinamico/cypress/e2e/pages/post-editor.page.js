@@ -9,9 +9,9 @@ export class PostEditorPage extends PageObjectClass {
         cy.wait(1000);
     }
 
-    createAndPublishPost(title, url) {
+    createAndPublishPost(title, url, text) {
         this.setTitle(title);
-        this.setContent(faker.lorem.paragraph());
+        this.setContent(text);
         cy.wait(1000);
         this.clickSettings();
         cy.wait(1000);
