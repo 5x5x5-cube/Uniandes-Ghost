@@ -27,6 +27,11 @@ export class ProfileStaff extends PageObjectClass {
             });
     }
 
+    clearName() {
+        cy.get("input.bg-transparent").first().clear();
+        cy.wait(1000);
+    }
+
     setName(name) {
         cy.get("input.bg-transparent").first().clear().type(name);
         cy.wait(1000);

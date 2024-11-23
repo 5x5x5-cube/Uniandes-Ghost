@@ -25,6 +25,13 @@ export class ChangeLanguage extends PageObjectClass {
         cy.wait(1000);
     }
 
+    clearLanguage() {
+        cy.get('input[placeholder="Site language"]')
+            .first()
+            .clear()
+        cy.wait(1000);
+    }
+
     saveLanguage() {
         cy.get(
             "#publication-language + .flex.items-start.justify-between.gap-4 div div .bg-green"

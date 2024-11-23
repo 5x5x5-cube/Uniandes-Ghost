@@ -64,4 +64,33 @@ describe("F004 - Configurar lenguaje de publicación", () => {
     });
 
 
+    it("E00502 - Modificar lenguaje sin clocar dato", () => {
+
+        cy.request({
+            method: 'GET',
+            url: 'https://my.api.mockaroo.com/language.json?key=07dfb270&count=1',
+        }).then((response) => {
+            const languageData = response.body[0];
+            cy.log('Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"');
+            cy.loginPage.loginAs(Cypress.env("ADMIN_USERNAME"), Cypress.env("ADMIN_PASSWORD"));
+
+            cy.log('And I click in admin setting');
+            cy.changeLanguage.clickAdminSetting();
+
+            cy.log('And I click in edit language');
+            cy.changeLanguage.clickEditLanguage();
+
+            cy.changeLanguage.clearLanguage();
+
+            cy.log('When I click in save language');
+            cy.changeLanguage.saveLanguage();
+
+       
+            // Then
+            cy.log(`I verify the language  "`);
+            cy.contains(languageData.error_empty).should('be.visible');
+        });
+    });
+
+
 });
