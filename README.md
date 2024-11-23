@@ -168,3 +168,10 @@ npm run test:pixelmatch
 ```
 
 Esto generará un reporte en la siguiente ubicación `packages/regresion_pixelmatch/results/report/index.html`
+
+# Pool de datos dinamicos
+Desde la raíz del monorepo ejecutar el siguiente comando
+
+```sh
+npm run test:dynamicpool    
+```
