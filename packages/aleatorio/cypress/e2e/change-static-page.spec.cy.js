@@ -70,4 +70,34 @@ describe("F007 Ghost Admin - Static Page Management", () => {
         );
         StaticPage.verifySuccessMessage();
     });
+
+    it("E00703 - should create a static page with special characters in the title", () => {
+        const specialCharTitle = faker.helpers.replaceSymbols("#!@%&*()[]{}<>?");
+        const pageContent = faker.lorem.paragraphs(2);
+
+        cy.log(
+            'Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"'
+        );
+        cy.loginPage.loginAs(
+            Cypress.env("ADMIN_USERNAME"),
+            Cypress.env("ADMIN_PASSWORD")
+        );
+
+        cy.log("Then the user should be redirected to the dashboard");
+        cy.wait(5000);
+        DashboardPage.verifyDashboard();
+
+        DashboardPage.navigateToPagesList();
+
+        cy.log('When I click on the "New Page" button and fill page details with special characters in the title');
+        StaticPage.clickNewPageButton();
+        StaticPage.fillInPageDetails(specialCharTitle, pageContent);
+
+        cy.log(
+            "Then: I should be able to publish the page and verify page has been published"
+        );
+        StaticPage.publishPage();
+        StaticPage.verifyPagePublished();
+    });
+    
 });
