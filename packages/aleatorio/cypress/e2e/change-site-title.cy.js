@@ -111,5 +111,42 @@ describe("F001 - Modificar titulo del sitio", () => {
         cy.log("And I wait for 2 seconds");
         cy.wait(2000);
     });
+
+    it("E00105 - Modificación título del sitio con una cadena extremadamente larga", () => {
+        const longTitle = faker.lorem.words(17); 
+    
+        // Given
+        cy.log(
+            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
+        );
+        cy.loginPage.loginAs(adminUsername, adminPassword);
+    
+        cy.settingsPage.navigateToSettingsPage();
+        cy.log("And I am in the Settings page");
+    
+        // When
+        cy.log("When I click the edit title and description option");
+        cy.settingsPage.clickEditTitleAndDescription();
+    
+        cy.log(`And I modify the title to an extremely long string "${longTitle}"`);
+        cy.settingsPage.setSiteTitle(longTitle);
+    
+        cy.log("And I click the save title button");
+        cy.settingsPage.clickSaveTitleButton();
+    
+        cy.log("And I navigate to Site page");
+        cy.sitePage.navigateToSitePage();
+    
+        cy.log("And I wait for 1 second");
+        cy.wait(1000);
+    
+        // Then
+        cy.log("Then the site title should display the long string correctly");
+        cy.sitePage.getSiteTitle().should("eq", longTitle);
+    
+        cy.log("And I wait for 2 seconds");
+        cy.wait(2000);
+    });
+    
     
 });
