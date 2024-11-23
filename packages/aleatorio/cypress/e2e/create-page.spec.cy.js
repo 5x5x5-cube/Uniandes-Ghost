@@ -71,4 +71,39 @@ describe("F006 - Crear página estática", () => {
         cy.log("And I wait for 2 seconds");
         cy.wait(2000);
     });
+
+    it("E00603 - Crear página estática con un título muy largo", () => {
+        const longPageTitle = faker.lorem.words(20); 
+        const pageUrl = faker.word.words(1);
+    
+        // Given
+        cy.log(
+            'Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"'
+        );
+        cy.loginPage.loginAs(
+            Cypress.env("ADMIN_USERNAME"),
+            Cypress.env("ADMIN_PASSWORD")
+        );
+    
+        cy.log("And I am on the post editor page");
+        cy.createPage.visit();
+    
+        // When
+        cy.log(
+            `When I create and publish a page with a long title "${longPageTitle}" and url "${pageUrl}"`
+        );
+        cy.createPage.createAndPublishPage(longPageTitle, pageUrl);
+    
+        cy.log(`And I navigate to the page url "${pageUrl}"`);
+        cy.createPage.navigateToPage(pageUrl);
+    
+        // Then
+        cy.log(`Then I should see a page with the post title "${longPageTitle}"`);
+        cy.createPage.getPageTitle().should("have.text", longPageTitle);
+    
+        cy.log("And I wait for 2 seconds");
+        cy.wait(2000);
+    });
+    
+
 });
