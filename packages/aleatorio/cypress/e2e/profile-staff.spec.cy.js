@@ -40,9 +40,31 @@ describe("F004 - Ver perfil de staff", () => {
 
         cy.log('I should be on the profile staff section with name "$$name-fullname"');
         cy.profileStaff.getName(name);
-
        
     });
+
+    it("E00403 - Update profile name with a long name", () => {
+        const longName = faker.lorem.words(10); // Generate a long name
+    
+        cy.log('Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"');
+        cy.loginPage.loginAs(Cypress.env("ADMIN_USERNAME"), Cypress.env("ADMIN_PASSWORD"));
+    
+        cy.log('And I click on admin settings');
+        cy.profileStaff.clickAdminSetting();
+    
+        cy.log('When I navigate to your profile');
+        cy.profileStaff.clickProfile();
+    
+        cy.log(`And I update the name with "${longName}"`);
+        cy.profileStaff.setName(longName);
+    
+        cy.log('When I click save');
+        cy.profileStaff.clickSave();
+    
+        cy.log('I should be on the profile staff section with name "$$name-fullname"');
+        cy.profileStaff.getName(longName);
+    });
+    
 
 
 });
