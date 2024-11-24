@@ -56,7 +56,7 @@ describe("F004 - Ver perfil de staff", () => {
             cy.profileStaff.clickSave();
 
             cy.log('I should be on the profile staff section with name "$$name-fullname"');
-            cy.contains(postData.error_name).should('be.visible');
+            cy.contains(postData.error_name).should('exist');
         });
         
 

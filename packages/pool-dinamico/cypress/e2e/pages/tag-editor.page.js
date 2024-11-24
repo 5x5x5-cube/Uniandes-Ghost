@@ -12,7 +12,8 @@ export class TagEditorPage extends PageObjectClass {
     }
 
     setName(name) {
-        cy.get('input[data-test-input="tag-name"]').type(name);
+        const nameInput = cy.get('input[data-test-input="tag-name"]');
+        name && nameInput.type(name);
         cy.wait(1000);
     }
 

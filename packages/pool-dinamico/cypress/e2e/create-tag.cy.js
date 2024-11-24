@@ -105,4 +105,35 @@ describe("F010 - Crear tag", () => {
             cy.wait(2000);
         });
     });
+
+
+    it("E01001 - Crear una nueva etiqueta con nombre mayor a 191 caracteres", () => {
+        cy.request({
+            method: 'GET',
+            url: 'https://my.api.mockaroo.com/tag.json?key=07dfb270&count=1',
+        }).then((response) => {
+            const tagData = response.body[0];
+
+            const tagName = tagData.tag_191;
+            const error = tagData.error_191;
+
+            // Given
+            cy.log(
+                `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
+            );
+            cy.loginPage.loginAs(adminUsername, adminPassword);
+
+            cy.log("And I am in the Tag editor page");
+            cy.tagEditorPage.navigateToTagEditorPage();
+
+            // When
+            cy.log(`When I create a new tag "${tagName}"`);
+            cy.tagEditorPage.createTag(tagName);
+
+            cy.contains(error).should('be.visible');
+
+            cy.log("And I wait for 2 seconds");
+            cy.wait(2000);
+        });
+    });
 });
