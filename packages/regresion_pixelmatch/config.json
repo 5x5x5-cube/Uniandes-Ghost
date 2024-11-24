@@ -1,0 +1,14 @@
+{
+    "urlBase": "./results/cypress/Ghost-4.5.0",
+    "urlRT": "./results/cypress/Ghost-5.96.0",
+    "comparisonOutput": "./results/compare",
+    "options": {
+        "threshold": 0.1,
+        "includeAA": true,
+        "alpha": 0.9,
+        "aaColor": [255, 0, 0],
+        "diffColor": [255, 0, 255],
+        "diffColorAlt": [0, 255, 255],
+        "diffMask": false
+    }
+  }
