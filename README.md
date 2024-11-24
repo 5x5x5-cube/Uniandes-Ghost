@@ -178,7 +178,17 @@ npm run test:a-priori
 ```
 
 # Pool de datos dinamicos
+### Configuración
 
+-   Ubicar el archivo de variables de entorno de Cypress que se encuentra en la ruta `./packages/pool-dinamico/cypress.env.json`
+-   Modificar las propiedades con los valores de la instancia de Ghost que se desea probar
+
+```json
+{
+    "ADMIN_USERNAME": "MY_ADMIN_EMAIL",
+    "ADMIN_PASSWORD": "MY_ADMIN_PASS"
+}
+```
 Desde la raíz del monorepo ejecutar el siguiente comando
 
 ```sh
