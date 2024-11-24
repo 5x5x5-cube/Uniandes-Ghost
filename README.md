@@ -187,6 +187,18 @@ npm run test:dynamicpool
 
 # Escenario aleatorio
 
+### Configuración
+
+-   Ubicar el archivo de variables de entorno de Cypress que se encuentra en la ruta `./packages/aleatorio/cypress.env.json`
+-   Modificar las propiedades con los valores de la instancia de Ghost que se desea probar
+
+```json
+{
+    "ADMIN_USERNAME": "MY_ADMIN_EMAIL",
+    "ADMIN_PASSWORD": "MY_ADMIN_PASS"
+}
+```
+
 Desde la raíz del monorepo ejecutar el siguiente comando
 
 ```sh
