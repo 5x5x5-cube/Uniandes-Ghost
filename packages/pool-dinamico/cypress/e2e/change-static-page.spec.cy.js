@@ -47,7 +47,6 @@ describe("F007 Ghost Admin - Static Page Management", () => {
             const pageData = response.body[0];
             const newPageTitle = pageData.name;
             const newPageContent = pageData.text;
-            const existingPageTitle = "About Us";
 
             cy.log(
                 'Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"'
@@ -67,7 +66,7 @@ describe("F007 Ghost Admin - Static Page Management", () => {
             PageListPage.navigateToPublishedPagesList();
 
             cy.log("When: I select the existing page to edit");
-            StaticPage.selectPage(existingPageTitle);
+            StaticPage.selectPage();
 
             cy.log("And: I edit the page title and content");
             StaticPage.editPageTitle(newPageTitle);

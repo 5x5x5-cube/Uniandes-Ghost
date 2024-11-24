@@ -27,8 +27,8 @@ class StaticPage extends PageObjectClass {
             .and("contain", "Boom! It's out there.");
     }
 
-    selectPage(pageTitle) {
-        cy.contains(pageTitle).first().click();
+    selectPage() {
+        cy.get(".gh-post-list-cta.edit ").first().click();
     }
 
     editPageTitle(newTitle) {

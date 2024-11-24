@@ -124,4 +124,48 @@ describe("F009 - Ghost Admin Login and Member Creation", () => {
             cy.contains(memberData.error_invalid_email).should('be.visible');
         });
     });
+
+
+    it("E00802 - should log in to Ghost admin and create a new member invalid name", () => {
+        cy.request({
+            method: 'GET',
+            url: 'https://my.api.mockaroo.com/member.json?key=07dfb270&count=1',
+        }).then((response) => {
+            const memberData = response.body[0];
+            const memberName = memberData.invalid_name;
+            const email = memberData.retry;
+            
+            cy.log(
+                'Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"'
+            );
+            cy.loginPage.loginAs(
+                Cypress.env("ADMIN_USERNAME"),
+                Cypress.env("ADMIN_PASSWORD")
+            );
+
+            // Then the user should be redirected to the dashboard
+            cy.wait(5000); // Ensure the page loads completely
+            cy.dashboardPage.verifyDashboard();
+
+            cy.log("Given the user navigates to the Members section");
+            cy.dashboardPage.navigateToMembers();
+
+            cy.log("When the user opens the new member form");
+            cy.membersPage.openNewMemberForm();
+
+            cy.log("Then the new member form should be displayed");
+
+            cy.log(
+                "Given the user has entered the new member details without an email"
+            );
+            cy.membersPage.fillMemberDetailsComplete(memberName, email);
+
+
+            cy.log("When the user saves the new member");
+            cy.membersPage.saveMember();
+
+            cy.log("Then an error should be displayed due to missing email");
+            cy.contains(memberData.error_invalid_email).should('exist');
+        });
+    });
 });

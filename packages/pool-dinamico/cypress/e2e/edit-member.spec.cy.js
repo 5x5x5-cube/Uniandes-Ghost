@@ -66,7 +66,7 @@ describe("F009 - Ghost Admin Login and Member Creation", () => {
             url: 'https://my.api.mockaroo.com/member.json?key=07dfb270&count=1',
         }).then((response) => {
 
-            const updatedMemberName = "Updated Member Name";
+            const updatedMemberName = "Free";
             cy.log(
                 'Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"'
             );

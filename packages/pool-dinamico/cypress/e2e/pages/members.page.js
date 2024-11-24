@@ -7,7 +7,9 @@ export class MembersPage extends PageObjectClass {
     }
 
     fillMemberDetailsComplete(name, email) {
-        cy.get('input[name="name"]').type(name);
+        const nameInput = cy.get('input[name="name"]');
+        name && nameInput.type(name);
+        cy.wait(1000);
         cy.get('input[name="email"]').type(email);
     }
 

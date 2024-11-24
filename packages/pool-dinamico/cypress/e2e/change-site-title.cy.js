@@ -5,12 +5,13 @@ describe("F001 - Modificar titulo del sitio", () => {
     const adminPassword = Cypress.env("ADMIN_PASSWORD");
 
     it("E00101 - Modificación titulo de sitio web", () => {
-        const siteTitle = faker.company.name();
         cy.request({
             method: 'GET',
             url: 'https://my.api.mockaroo.com/post.json?key=07dfb270&count=1',
         }).then((response) => {
             const postData = response.body[0];
+            const siteTitle = postData.site;
+
             // Given
             cy.log(
                 `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
