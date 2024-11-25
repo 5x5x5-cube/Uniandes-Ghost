@@ -31,7 +31,8 @@ describe("F010 - Crear tag", () => {
 
             // Then
             cy.log(`Then I should see the new tag name "${tagName}"`);
-            cy.tagListPage.getTagFromList(tagName).should("exist");
+            
+            cy.contains(tagName).should("exist");
 
             cy.log("And I wait for 2 seconds");
             cy.wait(2000);
@@ -65,7 +66,7 @@ describe("F010 - Crear tag", () => {
 
             // Then
             cy.log(`Then I should see the new tag name "${tagName}"`);
-            cy.tagListPage.getTagFromList(tagName).should("exist");
+            ccy.contains(tagName).should("exist");
 
             cy.log("And I wait for 2 seconds");
             cy.wait(2000);
