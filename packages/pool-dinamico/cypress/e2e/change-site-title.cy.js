@@ -49,7 +49,7 @@ describe("F001 - Modificar titulo del sitio", () => {
         });
     });
 
-    it("E00101 - Modificación titulo de sitio web", () => {
+    it("E00101 - Modificación titulo de sitio web naughty", () => {
         cy.request({
             method: 'GET',
             url: 'https://my.api.mockaroo.com/site.json?key=07dfb270&count=1',
