@@ -103,7 +103,7 @@ describe("F006 - Crear página estatica", () => {
         cy.wait(2000);
     });
 
-    it("E00801 - Validar error al crear página con título que contiene caracteres especiales", () => {
+    it("E00801 - Crear página con título que contiene caracteres especiales", () => {
         const pageTitle = `${faker.lorem.words(3)} @#$%^&*()!`; // Title with special characters
         const pageUrl = faker.lorem.word(); // Generate a valid URL
 
@@ -133,6 +133,38 @@ describe("F006 - Crear página estatica", () => {
         cy.createPage.getPageTitle().should("have.text", pageTitle);
 
         cy.log("And I wait for 2 seconds");
+        cy.wait(2000);
+    });
+
+    it("E00901 - Validar error al crear página con URL que contiene caracteres especiales", () => {
+        const pageTitle = faker.lorem.words(3); // Valid title without special characters
+        const pageUrl = `${faker.lorem.word()} @#$%^&*()!`; // URL with special characters
+
+        // Given
+        cy.log(
+            'Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"'
+        );
+        cy.loginPage.loginAs(
+            Cypress.env("ADMIN_USERNAME"),
+            Cypress.env("ADMIN_PASSWORD")
+        );
+
+        cy.log("And I am on the page editor page");
+        cy.createPage.visit();
+
+        // When
+        cy.log(
+            `When I create and publish a page with title "${pageTitle}" and URL "${pageUrl}"`
+        );
+        cy.createPage.createAndPublishPage(pageTitle, pageUrl);
+
+        // Then
+        cy.log("Then I should see a validation error message somewhere on the page");
+        cy.createPage.getValidationErrorMessage().should(
+            "contain.text",
+            "Validation failed"
+        );
+
         cy.wait(2000);
     });
     
