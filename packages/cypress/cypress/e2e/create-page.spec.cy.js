@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 
 describe("F006 - Crear página estatica", () => {
-    /*it("E00601 - Crear página estática", () => {
+    it("E00601 - Crear página estática", () => {
         const pageTitle = faker.word.words(2);
         const pageUrl = faker.word.words(1);
 
@@ -198,7 +198,7 @@ describe("F006 - Crear página estatica", () => {
         );
 
         cy.wait(2000);
-    });*/
+    });
 
     it("E00607 - Crear página con título vacío", () => {
         const pageTitle = ""; // Empty title
