@@ -13,8 +13,11 @@ export class PageObjectClass {
             return function (...args) {
                 const result = originalProperty.apply(this, args);
 
-                if (Cypress.env("CYPRESS_SCREENSHOTS")) {
-                    
+                const shouldTakeScreenshot =
+                    Cypress.env("CYPRESS_SCREENSHOTS") === "true" ||
+                    Cypress.env("CYPRESS_SCREENSHOTS") === true;
+
+                if (shouldTakeScreenshot) {
                     const appVersion =
                         Cypress.env("APP_VERSION") || "unknown-version";
                     const featureTitle = cy.state("runnable").parent.title;

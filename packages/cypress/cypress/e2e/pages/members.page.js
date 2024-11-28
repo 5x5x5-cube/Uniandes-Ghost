@@ -1,6 +1,11 @@
 import { PageObjectClass } from "./page-object.class";
 
 export class MembersPage extends PageObjectClass {
+    navigateToCreateMembersPage() {
+        cy.visit("/ghost/#/members/new");
+        cy.wait(1000);
+    }
+
     openNewMemberForm() {
         cy.get('a[href="#/members/new/"]').click();
         cy.url().should("include", "/#/members/new");
