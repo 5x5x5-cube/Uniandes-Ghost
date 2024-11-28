@@ -103,4 +103,8 @@ export class CreatePage extends PageObjectClass {
                 });
         });
     }
+
+    getValidationErrorMessage() {
+        return cy.contains('body', 'Validation failed'); 
+    }
 }
