@@ -1,18 +1,23 @@
 import { faker } from "@faker-js/faker";
 
 describe("F002 - Crear post", () => {
-    const adminUsername = Cypress.env("ADMIN_USERNAME");
-    const adminPassword = Cypress.env("ADMIN_PASSWORD");
+    before(() => {
+        const adminUsername = Cypress.env("ADMIN_USERNAME");
+        const adminPassword = Cypress.env("ADMIN_PASSWORD");
+
+        cy.log(
+            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
+        );
+        cy.loginPage.loginAs(adminUsername, adminPassword);
+    });
 
     it("E00201 - Crear un post y publicarlo", () => {
         const postTitle = faker.word.words(2);
         const postUrl = faker.word.words(1);
 
         // Given
-        cy.log(
-            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
-        );
-        cy.loginPage.loginAs(adminUsername, adminPassword);
+        cy.log(`Given I am an admin logged as admin`);
+        cy.loginPage.loggedAsAdmin();
 
         cy.log("And I am on the post editor page");
         cy.postEditorPage.visit();
@@ -38,10 +43,8 @@ describe("F002 - Crear post", () => {
         const postTitle = faker.word.words(2);
 
         // Given
-        cy.log(
-            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
-        );
-        cy.loginPage.loginAs(adminUsername, adminPassword);
+        cy.log(`Given I am an admin logged as admin`);
+        cy.loginPage.loggedAsAdmin();
 
         cy.log("And I am on the post editor page");
         cy.postEditorPage.visit();
@@ -73,10 +76,8 @@ describe("F002 - Crear post", () => {
         const postUrl = faker.word.words(1);
 
         // Given
-        cy.log(
-            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
-        );
-        cy.loginPage.loginAs(adminUsername, adminPassword);
+        cy.log(`Given I am an admin logged as admin`);
+        cy.loginPage.loggedAsAdmin();
 
         cy.log("And I am on the post editor page");
         cy.postEditorPage.visit();
@@ -104,10 +105,8 @@ describe("F002 - Crear post", () => {
         const postDate = faker.date.past();
 
         // Given
-        cy.log(
-            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
-        );
-        cy.loginPage.loginAs(adminUsername, adminPassword);
+        cy.log(`Given I am an admin logged as admin`);
+        cy.loginPage.loggedAsAdmin();
 
         cy.log("And I am on the post editor page");
         cy.postEditorPage.visit();
@@ -139,10 +138,8 @@ describe("F002 - Crear post", () => {
         const postDate = faker.date.future();
 
         // Given
-        cy.log(
-            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
-        );
-        cy.loginPage.loginAs(adminUsername, adminPassword);
+        cy.log(`Given I am an admin logged as admin`);
+        cy.loginPage.loggedAsAdmin();
 
         cy.log("And I am on the post editor page");
         cy.postEditorPage.visit();
@@ -173,10 +170,8 @@ describe("F002 - Crear post", () => {
         const postUrl = faker.word.words(1);
 
         // Given
-        cy.log(
-            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
-        );
-        cy.loginPage.loginAs(adminUsername, adminPassword);
+        cy.log(`Given I am an admin logged as admin`);
+        cy.loginPage.loggedAsAdmin();
 
         cy.log("And I am on the post editor page");
         cy.postEditorPage.visit();
@@ -217,10 +212,8 @@ describe("F002 - Crear post", () => {
         const postExcerpt = faker.string.sample(30);
 
         // Given
-        cy.log(
-            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
-        );
-        cy.loginPage.loginAs(adminUsername, adminPassword);
+        cy.log(`Given I am an admin logged as admin`);
+        cy.loginPage.loggedAsAdmin();
 
         cy.log("And I am on the post editor page");
         cy.postEditorPage.visit();
@@ -260,10 +253,8 @@ describe("F002 - Crear post", () => {
         const postExcerpt = faker.string.sample(301);
 
         // Given
-        cy.log(
-            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
-        );
-        cy.loginPage.loginAs(adminUsername, adminPassword);
+        cy.log(`Given I am an admin logged as admin`);
+        cy.loginPage.loggedAsAdmin();
 
         cy.log("And I am on the post editor page");
         cy.postEditorPage.visit();
@@ -303,10 +294,8 @@ describe("F002 - Crear post", () => {
         const postUrl = faker.word.words(1);
 
         // Given
-        cy.log(
-            `Given I am an admin logged in with email "${adminUsername}" and password "${adminPassword}"`
-        );
-        cy.loginPage.loginAs(adminUsername, adminPassword);
+        cy.log(`Given I am an admin logged as admin`);
+        cy.loginPage.loggedAsAdmin();
 
         cy.log("And I am on the post editor page");
         cy.postEditorPage.visit();

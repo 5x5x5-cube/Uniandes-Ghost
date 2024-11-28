@@ -26,5 +26,16 @@ export class LoginPage extends PageObjectClass {
         this.enterEmail(email);
         this.enterPassword(password);
         this.clickSignIn();
+
+        cy.getCookie("ghost-admin-api-session").then((cookie) => {
+            Cypress.env("GHOST_ADMIN_API_SESSION", cookie.value);
+        });
+    }
+
+    loggedAsAdmin() {
+        cy.setCookie(
+            "ghost-admin-api-session",
+            Cypress.env("GHOST_ADMIN_API_SESSION")
+        );
     }
 }
