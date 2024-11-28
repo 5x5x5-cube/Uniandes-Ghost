@@ -72,6 +72,10 @@ describe("F006 - Crear página estatica", () => {
         cy.wait(2000);
     });
 
+    /*
+      ----------------ESCENARIOS EXTENDIDOS PARA LA ENTREGA FINAL DE LA SEMANA 8--------------------
+    */
+
     it("E00603 - Crear página estática con título extremadamente largo", () => {
         const pageTitle = faker.lorem.words(100); // long tittle
         const pageUrl = faker.word.words(1);
@@ -136,6 +140,7 @@ describe("F006 - Crear página estatica", () => {
         cy.wait(2000);
     });
 
+    //Genera incidencia con assert fallido
     it("E00605 - Crear página con URL que contiene caracteres especiales", () => {
         const pageTitle = faker.lorem.words(3); // Valid title without special characters
         const pageUrl = `${faker.lorem.word()} @#$%^&*()!`; // URL with special characters
@@ -168,6 +173,7 @@ describe("F006 - Crear página estatica", () => {
         cy.wait(2000);
     });
 
+    //Genera incidencia con assert fallido
     it("E00606 - Crear página con URL extremadamente larga", () => {
         const pageTitle = faker.lorem.words(3); // Valid title
         const longUrl = faker.internet.url().repeat(10); // Create an extremely long URL (repeating a valid URL 10 times)
@@ -200,6 +206,7 @@ describe("F006 - Crear página estatica", () => {
         cy.wait(2000);
     });
 
+    //Genera incidencia con assert fallido
     it("E00607 - Crear página con título vacío", () => {
         const pageTitle = ""; // Empty title
         const pageUrl = faker.lorem.word(); // Valid URL
