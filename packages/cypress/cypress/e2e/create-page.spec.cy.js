@@ -70,7 +70,7 @@ describe("F006 - Crear página estatica", () => {
 
         cy.log("And I wait for 2 seconds");
         cy.wait(2000);
-    });*/
+    });
 
     it("E00801 - Crear página estática con título extremadamente largo", () => {
         const pageTitle = faker.lorem.words(100); // long tittle
@@ -157,6 +157,38 @@ describe("F006 - Crear página estatica", () => {
             `When I create and publish a page with title "${pageTitle}" and URL "${pageUrl}"`
         );
         cy.createPage.createAndPublishPage(pageTitle, pageUrl);
+
+        // Then
+        cy.log("Then I should see a validation error message somewhere on the page");
+        cy.createPage.getValidationErrorMessage().should(
+            "contain.text",
+            "Validation failed"
+        );
+
+        cy.wait(2000);
+    });*/
+
+    it("E01001 - Validar error al crear página con URL extremadamente larga", () => {
+        const pageTitle = faker.lorem.words(3); // Valid title
+        const longUrl = faker.internet.url().repeat(10); // Create an extremely long URL (repeating a valid URL 10 times)
+
+        // Given
+        cy.log(
+            'Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"'
+        );
+        cy.loginPage.loginAs(
+            Cypress.env("ADMIN_USERNAME"),
+            Cypress.env("ADMIN_PASSWORD")
+        );
+
+        cy.log("And I am on the page editor page");
+        cy.createPage.visit();
+
+        // When
+        cy.log(
+            `When I create and publish a page with title "${pageTitle}" and URL "${longUrl}"`
+        );
+        cy.createPage.createAndPublishPage(pageTitle, longUrl);
 
         // Then
         cy.log("Then I should see a validation error message somewhere on the page");
