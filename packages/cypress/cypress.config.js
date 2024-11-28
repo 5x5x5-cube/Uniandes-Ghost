@@ -13,9 +13,11 @@ module.exports = defineConfig({
         },
         setupNodeEvents(on, config) {
             on("after:screenshot", (details) => {
-                
-                if (!details.name || process.env.CYPRESS_SCREENSHOTS != "true")
-                    return;
+                const shouldTakeScreenshot =
+                    process.env.CYPRESS_SCREENSHOTS === "true" ||
+                    process.env.CYPRESS_SCREENSHOTS === true;
+
+                if (!details.name || shouldTakeScreenshot) return;
 
                 const basePath = path.resolve(
                     __dirname,
@@ -25,7 +27,7 @@ module.exports = defineConfig({
                 const nameParts = details.name.split("/").slice(0, -1);
                 const fileName = details.path.split(path.sep).pop();
                 const dirPath = path.join(basePath, ...nameParts);
-                
+
                 fs.mkdirSync(dirPath, { recursive: true });
 
                 const newPath = path.join(dirPath, fileName);
