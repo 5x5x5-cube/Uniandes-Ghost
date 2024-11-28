@@ -31,7 +31,11 @@ export class CreatePage extends PageObjectClass {
     }
 
     setTitle(title) {
-        cy.get("textarea[data-test-editor-title-input]").type(title);
+        if (title) {
+            cy.get("textarea[data-test-editor-title-input]").type(title);
+        } else {
+            cy.log("El título está vacío, no se puede escribir.");
+        }
     }
 
     setContent(content) {
