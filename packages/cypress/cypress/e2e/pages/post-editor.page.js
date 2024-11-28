@@ -9,7 +9,7 @@ export class PostEditorPage extends PageObjectClass {
         cy.wait(1000);
     }
 
-    createAndPublishPost(title, url) {
+    createPost(title, url) {
         this.setTitle(title);
         this.setContent(faker.lorem.paragraph());
         cy.wait(1000);
@@ -18,12 +18,33 @@ export class PostEditorPage extends PageObjectClass {
         this.setUrl(url);
         cy.wait(1000);
         this.clickSettings();
-        cy.wait(1000);
+    }
+
+    publishPost() {
         this.clickEditorButton("Publish");
         cy.wait(1000);
         this.clickContinue();
         cy.wait(1000);
         this.clickConfirmPublish();
+    }
+
+    createAndPublishPost(title, url) {
+        this.createPost(title, url);
+        cy.wait(1000);
+        this.publishPost();
+        cy.wait(1000);
+    }
+
+    createAndPublicPostWithPreviousData(title, url, date) {
+        this.createPost(title, url);
+        cy.wait(1000);
+        this.clickSettings();
+        cy.wait(1000);
+        this.setDate(date);
+        cy.wait(1000);
+        this.clickSettings();
+        cy.wait(1000);
+        this.publishPost();
         cy.wait(1000);
     }
 
@@ -38,6 +59,25 @@ export class PostEditorPage extends PageObjectClass {
         data.click().type(content);
     }
 
+    setDate(date) {
+        const formattedDate = new Date(date).toISOString().split("T")[0];
+        const dateInput = cy.get(
+            "input[data-test-date-time-picker-date-input]"
+        );
+        dateInput.clear();
+        dateInput.type(formattedDate, { force: true });
+
+        const formattedTime = new Date(date)
+            .toISOString()
+            .split("T")[1]
+            .split(".")[0];
+        const timeInput = cy.get(
+            "input[data-test-date-time-picker-time-input]"
+        );
+        timeInput.clear();
+        timeInput.type(formattedTime, { force: true });
+    }
+
     clickSettings() {
         cy.get("button[title='Settings']").click();
     }
@@ -46,6 +86,33 @@ export class PostEditorPage extends PageObjectClass {
         const urlInput = cy.get("input#url");
         urlInput.clear({ force: true });
         urlInput.type(url, { force: true });
+    }
+
+    setExcerpt(excerpt) {
+        const excerptInput = cy.get("textarea#custom-excerpt");
+        excerptInput.clear();
+        excerptInput.type(excerpt, {
+            force: true,
+            parseSpecialCharSequences: false,
+        });
+    }
+
+    removeAuthor() {
+        const currentAuthor = cy.get(
+            `div#author-list span[aria-label="remove element"]`
+        );
+        currentAuthor.click();
+    }
+
+    setPostAccess(postAccess) {
+        const selector = cy.get('select[data-test-select="post-visibility"]');
+        selector.select(postAccess);
+    }
+
+    removeSelectedTier() {
+        cy.get(
+            'div[data-test-visibility-segment-select] span[aria-label="remove element"]'
+        ).click();
     }
 
     clickEditorButton(buttonName) {
@@ -68,5 +135,9 @@ export class PostEditorPage extends PageObjectClass {
 
     clickReturnArrow() {
         cy.get('a[data-test-link="posts"]').click();
+    }
+
+    getErrorMessage(message) {
+        return cy.contains(message);
     }
 }
