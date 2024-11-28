@@ -102,5 +102,38 @@ describe("F006 - Crear página estatica", () => {
        );
         cy.wait(2000);
     });
+
+    it("E00801 - Validar error al crear página con título que contiene caracteres especiales", () => {
+        const pageTitle = `${faker.lorem.words(3)} @#$%^&*()!`; // Title with special characters
+        const pageUrl = faker.lorem.word(); // Generate a valid URL
+
+        // Given
+        cy.log(
+            'Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"'
+        );
+        cy.loginPage.loginAs(
+            Cypress.env("ADMIN_USERNAME"),
+            Cypress.env("ADMIN_PASSWORD")
+        );
+
+        cy.log("And I am on the page editor page");
+        cy.createPage.visit();
+
+        // When
+        cy.log(
+            `When I create and publish a page with title "${pageTitle}" and URL "${pageUrl}"`
+        );
+        cy.createPage.createAndPublishPage(pageTitle, pageUrl);
+
+        cy.log(`And I navigate to the page url "${pageUrl}"`);
+        cy.createPage.navigateToPage(pageUrl);
+
+        // Then
+        cy.log(`Then I should see a page with the post title "${pageTitle}"`);
+        cy.createPage.getPageTitle().should("have.text", pageTitle);
+
+        cy.log("And I wait for 2 seconds");
+        cy.wait(2000);
+    });
     
 });
