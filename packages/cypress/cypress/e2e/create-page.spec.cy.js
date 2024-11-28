@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 
 describe("F006 - Crear página estatica", () => {
-    /*it("E00601 - Crear página estática", () => {
+    it("E00601 - Crear página estática", () => {
         const pageTitle = faker.word.words(2);
         const pageUrl = faker.word.words(1);
 
@@ -72,7 +72,7 @@ describe("F006 - Crear página estatica", () => {
         cy.wait(2000);
     });
 
-    it("E00801 - Crear página estática con título extremadamente largo", () => {
+    it("E00603 - Crear página estática con título extremadamente largo", () => {
         const pageTitle = faker.lorem.words(100); // long tittle
         const pageUrl = faker.word.words(1);
 
@@ -103,7 +103,7 @@ describe("F006 - Crear página estatica", () => {
         cy.wait(2000);
     });
 
-    it("E00801 - Crear página con título que contiene caracteres especiales", () => {
+    it("E00604 - Crear página con título que contiene caracteres especiales", () => {
         const pageTitle = `${faker.lorem.words(3)} @#$%^&*()!`; // Title with special characters
         const pageUrl = faker.lorem.word(); // Generate a valid URL
 
@@ -136,7 +136,7 @@ describe("F006 - Crear página estatica", () => {
         cy.wait(2000);
     });
 
-    it("E00901 - Validar error al crear página con URL que contiene caracteres especiales", () => {
+    it("E00605 - Crear página con URL que contiene caracteres especiales", () => {
         const pageTitle = faker.lorem.words(3); // Valid title without special characters
         const pageUrl = `${faker.lorem.word()} @#$%^&*()!`; // URL with special characters
 
@@ -166,9 +166,9 @@ describe("F006 - Crear página estatica", () => {
         );
 
         cy.wait(2000);
-    });*/
+    });
 
-    it("E01001 - Validar error al crear página con URL extremadamente larga", () => {
+    it("E00606 - Crear página con URL extremadamente larga", () => {
         const pageTitle = faker.lorem.words(3); // Valid title
         const longUrl = faker.internet.url().repeat(10); // Create an extremely long URL (repeating a valid URL 10 times)
 
