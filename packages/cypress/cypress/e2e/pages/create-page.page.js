@@ -30,6 +30,25 @@ export class CreatePage extends PageObjectClass {
         cy.wait(1000);
     }
 
+    createAndPublishLongTittlePage(title, url) {
+        this.setTitle('A');
+        this.setContent(faker.lorem.paragraph());
+        this.setTitle(title);
+        cy.wait(1000);
+        this.clickSettings();
+        cy.wait(1000);
+        this.setUrl(url);
+        cy.wait(1000);
+        this.clickSettings();
+        cy.wait(1000);
+        this.clickEditorButton("Publish");
+        cy.wait(1000);
+        this.clickContinue();
+        cy.wait(1000);
+        this.clickConfirmPublish();
+        cy.wait(1000);
+    }
+
     setTitle(title) {
         if (title) {
             cy.get("textarea[data-test-editor-title-input]").type(title);
