@@ -96,7 +96,7 @@ describe("F006 - Crear página estatica", () => {
         cy.log(
             `When I create and publish a page with title "${pageTitle}" and url "${pageUrl}"`
         );
-        cy.createPage.createAndPublishPage(pageTitle, pageUrl);
+        cy.createPage.createAndPublishLongTittlePage(pageTitle, pageUrl);
 
        // Then
        cy.log("Then I should see a validation error message somewhere on the page");
