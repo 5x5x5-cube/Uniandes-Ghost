@@ -57,8 +57,4 @@ npm run test:cypress
 ```
 
 
-Desde la raíz del monorepo ejecutar el siguiente comando
 
-```sh
-npm run test:aleatorio
-```
