@@ -44,7 +44,7 @@ describe("F004 - Ver perfil de staff", () => {
        
     });
 
-    it("E00402 - Ver perfil desde panel administrativo y modificar email con email invalido", () => {
+    it("E00403 - Ver perfil desde panel administrativo y modificar email con email invalido", () => {
         const name = faker.word.words();
         cy.log('Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"');
         cy.loginPage.loginAs(Cypress.env("ADMIN_USERNAME"),Cypress.env("ADMIN_PASSWORD"));
@@ -68,7 +68,7 @@ describe("F004 - Ver perfil de staff", () => {
        
     });
 
-    it("E00402 - Ver perfil desde panel administrativo y modificar website con website invalido", () => {
+    it("E00404 - Ver perfil desde panel administrativo y modificar website con website invalido", () => {
         const name = faker.word.words();
         cy.log('Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"');
         cy.loginPage.loginAs(Cypress.env("ADMIN_USERNAME"),Cypress.env("ADMIN_PASSWORD"));
@@ -93,7 +93,7 @@ describe("F004 - Ver perfil de staff", () => {
     });
 
 
-    it("E00402 - Ver perfil desde panel administrativo y modificar clave con clave antigua erronea", () => {
+    it("E00405 - Ver perfil desde panel administrativo y modificar clave con clave antigua erronea", () => {
         const password = faker.string.alpha({ length: 15 });
         cy.log('Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"');
         cy.loginPage.loginAs(Cypress.env("ADMIN_USERNAME"),Cypress.env("ADMIN_PASSWORD"));
@@ -127,7 +127,7 @@ describe("F004 - Ver perfil de staff", () => {
     });
 
 
-    it("E00402 - Ver perfil desde panel administrativo y modificar clave con clave nueva vacia", () => {
+    it("E00406 - Ver perfil desde panel administrativo y modificar clave con clave nueva vacia", () => {
         const password = faker.string.alpha({ length: 15 });
         cy.log('Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"');
         cy.loginPage.loginAs(Cypress.env("ADMIN_USERNAME"),Cypress.env("ADMIN_PASSWORD"));
@@ -156,7 +156,7 @@ describe("F004 - Ver perfil de staff", () => {
        
     });
 
-    it("E00402 - Ver perfil desde panel administrativo y modificar clave con menor a 10 caracteres", () => {
+    it("E00407 - Ver perfil desde panel administrativo y modificar clave con menor a 10 caracteres", () => {
         const password = faker.string.alpha({ length: 9 });
         cy.log('Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"');
         cy.loginPage.loginAs(Cypress.env("ADMIN_USERNAME"),Cypress.env("ADMIN_PASSWORD"));
@@ -191,7 +191,7 @@ describe("F004 - Ver perfil de staff", () => {
 
 
 
-    it("E00402 - Ver perfil desde panel administrativo y modificar clave con clave de verificacion diferente a la nueva clave", () => {
+    it("E00408 - Ver perfil desde panel administrativo y modificar clave con clave de verificacion diferente a la nueva clave", () => {
         const password = faker.string.alpha({ length: 15 });
         const passwordVerify = faker.string.alpha({ length: 15 });
         cy.log('Given I am an admin logged in with email "<ADMIN_USERNAME>" and password "<ADMIN_PASSWORD>"');
