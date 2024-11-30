@@ -1,8 +1,9 @@
 import { PageObjectClass } from "./page-object.class";
 
 export class SetMetadataPage extends PageObjectClass {
-    metadataTitle = `input[placeholder="Pagac, Sporer and Legros"]`;
-    metadataDescription = `input[placeholder="Thoughts, stories and ideas."]`;
+    metadataTitle =
+        'input:not([placeholder="Thoughts, stories and ideas."])[type="text"]';
+    metadataDescription = 'input[placeholder="Thoughts, stories and ideas."]';
     searchEngineMetadataContainer = 'div[data-testid="metadata"]';
     xMetadataContainer = 'div[data-testid="twitter"]';
     facebookMetadataContainer = 'div[data-testid="facebook"]';
