@@ -8,4 +8,8 @@ export class SitePage extends PageObjectClass {
     getSiteTitle() {
         return cy.title();
     }
+
+    getLinkByText(text) {
+        return cy.get(`a:contains("${text}")`);
+    }
 }

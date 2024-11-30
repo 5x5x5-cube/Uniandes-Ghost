@@ -13,3 +13,4 @@ export * from "./tag-editor.page";
 export * from "./tag-list.page";
 export * from "./admin.page";
 export * from "./set-metadata.page";
+export * from "./manage-navigation.page";

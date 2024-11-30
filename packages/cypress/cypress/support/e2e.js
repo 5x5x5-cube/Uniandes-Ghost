@@ -31,6 +31,7 @@ import {
     TagListPage,
     AdminPage,
     SetMetadataPage,
+    ManageNavigationPage,
 } from "../e2e/pages";
 import "./commands";
 
@@ -58,6 +59,7 @@ before(() => {
     cy.tagListPage = new TagListPage();
     cy.adminPage = new AdminPage();
     cy.setMetadataPage = new SetMetadataPage();
+    cy.manageNavigationPage = new ManageNavigationPage();
 });
 
 beforeEach(() => {
